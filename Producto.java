@@ -1,5 +1,4 @@
-
-public class Producto {
+public class Producto implements Comparable<Producto>{
 	private int codPro;
 	private String nomPro;
 	private String desPro;
@@ -80,9 +79,10 @@ public class Producto {
 	
 	@Override
 	public String toString() {
-		return "Producto [codPro=" + codPro + ", nomPro=" + nomPro + ", desPro=" + desPro + ", cantPro=" + cantPro
-				+ ", precio=" + precio + ", ubiPro=" + ubiPro + ", datePro=" + datePro + ", tipo=" + tipo
-				+ ", variedad=" + variedad + "]";
+		return 	  "\n"
+				+ "Producto: "+this.getNomPro()+"\n"
+				+ "Cantidad: "+this.getCantPro()+"\n"
+				+ "Precio Unitario: "+this.getPrecio()+"\n";
 	}
 	public int compareTo(Producto o) {
 		if (this.codPro>o.codPro) return 1;
