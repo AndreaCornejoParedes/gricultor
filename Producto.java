@@ -6,10 +6,9 @@ public class Producto implements Comparable<Producto>{
 	private float precio;
 	private String ubiPro;
 	private int datePro;
-	private String tipo;
 	private String variedad;
-	public Producto(int codPro, String nomPro, String desPro, int cantPro, float precio, String ubiPro, int datePro,
-			String tipo, String variedad) {
+	public Producto(int codPro, String nomPro, String desPro, int cantPro, 
+			float precio, String ubiPro, int datePro, String variedad) {
 		super();
 		this.codPro = codPro;
 		this.nomPro = nomPro;
@@ -18,7 +17,6 @@ public class Producto implements Comparable<Producto>{
 		this.precio = precio;
 		this.ubiPro = ubiPro;
 		this.datePro = datePro;
-		this.tipo = tipo;
 		this.variedad = variedad;
 	}
 	public int getCodPro() {
@@ -63,12 +61,6 @@ public class Producto implements Comparable<Producto>{
 	public void setDatePro(int datePro) {
 		this.datePro = datePro;
 	}
-	public String getTipo() {
-		return tipo;
-	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
 	public String getVariedad() {
 		return variedad;
 	}
@@ -92,7 +84,7 @@ public class Producto implements Comparable<Producto>{
 	public boolean equals(Object o) {
 		if(o instanceof Producto) {
 			Producto p = (Producto) o;
-			return this.codPro == p.getCodPro();
+			return this.nomPro == p.getNomPro();
 		}
 		return false;
 	}
