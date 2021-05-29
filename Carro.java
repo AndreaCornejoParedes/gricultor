@@ -1,39 +1,35 @@
-
-public class Carro// extends <LinkedList>
-{
-	private int codigoPedido;
-	private String destino;
-	private int Cantidad;
-	public Carro(int codigoPedido, String destino, int cantidad) {
-		super();
-		this.codigoPedido = codigoPedido;
-		this.destino = destino;
-		Cantidad = cantidad;
+public class Carro extends Producto{ //Herencia_De_Producto
+	//Atributos_de_la_clase_Producto 
+	private int CantidadPro;
+	private float CostoPed;
+	
+	public Carro(int codPro, String nomPro, String desPro, int cantPro, float precio, String ubiPro, int datePro,
+			String variedad, String destino, int cantidadPro, float costoPed) {
+		super(codPro, nomPro, desPro, cantPro, precio, ubiPro, datePro, variedad);
+		this.setCantidadPro(cantidadPro);
+		this.setCostoPed(CostoPed);
 	}
-	public int getCodigoPedido() {
-		return codigoPedido;
+	
+	public int getCantidadPro() {return CantidadPro;}
+	public void setCantidadPro(int cantidadPro) {
+		if (CantidadPro>0)
+			this.CantidadPro = cantidadPro;
+		else 
+			this.CantidadPro = 0;
+			System.out.print("No hay productos introducidos"+this.CantidadPro);
 	}
-	public void setCodigoPedido(int codigoPedido) {
-		this.codigoPedido = codigoPedido;
+	public float CostoPed() {
+		return CostoPed;
 	}
-	public String getDestino() {
-		return destino;
+	public void setCostoPed (float costoPed) {
+		this.CostoPed= costoPed;
 	}
-	public void setDestino(String destino) {
-		this.destino = destino;
-	}
-	public int getCantidad() {
-		return Cantidad;
-	}
-	public void setCantidad(int cantidad) {
-		Cantidad = cantidad;
-	}
+	public void almacenar () {}
+	public void Vaciar() {}
 	@Override
 	public String toString() {
-		return "El carrito tiene:"
-				+ "Codigo del pedido =" + codigoPedido
-				+ "El pedido esta dirigido hacia: " + destino 
-				+ "Cantidad de productos" + Cantidad + "]";
+		return " \t Detalles del pedido: \t"
+				+ "Cantidad de productos" + this.CantidadPro + "\n";
 	}
 	
 	
