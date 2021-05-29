@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class Producto implements Comparable<Producto>{
 	private int codPro;
 	private String nomPro;
@@ -7,6 +8,29 @@ public class Producto implements Comparable<Producto>{
 	private String ubiPro;
 	private int datePro;
 	private String variedad;
+	
+	public Producto() {
+		super();
+		Scanner sccod=new Scanner(System.in);
+		System.out.println("\t----MENÚ PRODUCTO----\nINGRESE LOS SIGUIENTES DATOS");
+		System.out.println("CÓDIGO: "); int cod=sccod.nextInt();
+		Scanner scnom=new Scanner(System.in);
+		System.out.println("NOMBRE: "); String nom=scnom.nextLine();
+		Scanner scdes=new Scanner(System.in);
+		System.out.println("DESCRIPCIÓN: "); String des=scdes.nextLine();
+		Scanner sccan=new Scanner(System.in);
+		System.out.println("CANTIDAD: "); int can=sccan.nextInt();
+		Scanner scprec=new Scanner(System.in);
+		System.out.println("PRECIO: "); float prec=scprec.nextFloat();
+		Scanner scubi=new Scanner(System.in);
+		System.out.println("UBICACIÓN: "); String ubi=scubi.nextLine();
+		Scanner scdate=new Scanner(System.in);
+		System.out.println("FECHA COSECHA: ");int date=scdate.nextInt();
+		Scanner scvar=new Scanner(System.in);
+		System.out.println("VARIEDAD: "); String var=scvar.nextLine();
+		this.codPro=cod; this.nomPro=nom; this.desPro=des; this.cantPro=can;
+		this.precio=prec; this.ubiPro=ubi; this.datePro=date; this.variedad=var;
+	}
 	public Producto(int codPro, String nomPro, String desPro, int cantPro, 
 			float precio, String ubiPro, int datePro, String variedad) {
 		super();

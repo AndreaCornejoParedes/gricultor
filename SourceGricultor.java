@@ -10,12 +10,10 @@ public class SourceGricultor {
 		System.out.println(Andrea.promcalif());
 		
 		OrderListLinked<Producto> listaP = new OrderListLinked<Producto>();
-		listaP.insertNode(new Producto(1, "Laptop", "Laptop samsung", 4, (float)1200.5, "NN", 1 ,"Tecnologia", "Rosa"));
-		listaP.insertNode(new Producto(1, "Laptop", "Laptop samsung", 2, (float)1200.5, "NN", 1 ,"Tecnologia", "Rosa"));
-		listaP.insertNode(new Producto(1, "Laptop", "Laptop samsung", 3, (float)1200.5, "NN", 1 ,"Tecnologia", "Rosa"));
-		listaP.insertNode(new Producto(1, "Laptop", "Laptop samsung", 1, (float)1200.5, "NN", 1 ,"Tecnologia", "Rosa"));
-		
-		
+		listaP.insertNode(new Producto(1, "Laptop", "Laptop samsung", 4, (float)1200.5, "NN", 1 , "Rosa"));
+		listaP.insertNode(new Producto(2, "Computadora", "PC samsung", 2, (float)1200.5, "NN", 1 , "Rosa"));
+		listaP.insertNode(new Producto(3, "Mouse", "Mouse samsung", 3, (float)1200.5, "NN", 1 , "Rosa"));
+		listaP.insertNode(new Producto(4, "Monitor", "Monitor samsung", 1, (float)1200.5, "NN", 1 , "Rosa"));
 		
 		Factura f1 = new Factura(listaP);
 		
