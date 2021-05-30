@@ -14,34 +14,62 @@ public class Comprador extends Usuario {
 	}
 
 	public void RealizarPedido() {
-		Carro c1;
-		int cant;
-		String destino;
-		System.out.println("================= Pedido =================");
-		System.out.print("Ingrese la cantidad de productos: ");
-		cant=reader.nextInt();
-		c1.setCantidad(cant);
-		System.out.print("Ingrese el destino al que llegara su pedido: ");
-		destino = reader.nextLine();
-		c1.setDestino(destino);
+		
+		System.out.println("\t================= PEDIDO =================");
 
-		System.out.print("Su codigo de su pedido es: "+c1.getCodigoVenta());
-		carrito.insertLast(c1);
-		System.out.println(" *** Gracias por su compra en Gricultor *** ");
+		Carro c1 = new Carro();
+		CategoriaProducto p1 = null;
+		int cant;double precio, desc;
+		String nom, nomPro;
+		
+		System.out.print("\nIngrese el nombre de la categoria que busca: ");
+		nom= reader.nextLine();
+		if(p1.equals(nom) == false) {
+			System.out.println("\nNo se encontro la categoria solicitada");
+			this.RealizarPedido();
+		}
+		else {
+			p1.toString();
+			System.out.print("Ingrese el nombre del producto deseado: ");
+			nomPro=reader.nextLine();
+			if(c1.getProducto().equals(nomPro)==false) {
+				System.out.println("\nNo se encontro el producto solicitado");
+				this.RealizarPedido();
+			}
+			System.out.print("Ingrese la cantidad de productos que desee comprar: ");
+			cant=reader.nextInt();
+			c1.setCantidad(cant);
+			precio=(c1.getProducto().getPrecio())*cant;
+			System.out.println("Recuerde que si su compra excede un limite de productos se le aplicara un descuento");
+			if(cant>30) {
+				desc= 5.70;
+				c1.setDescuento(desc);
+				precio=precio-desc;
+			}
+			System.out.println("\n El total de su pedido es: "+precio);
+			System.out.println("\nSu codigo de su pedido es: "+c1.getCodigoVenta());
+			carrito.insertLast(c1);
+			System.out.println("\n **** Gracias por su compra en Gricultor **** ");
+			System.out.println("\n *** Esperamos su proxima compra *** ");
+			
+		}
 	}
 	
 	public void CancelarPedido() {
+		
 		int cod;
-		System.out.println("================= Cancelacion de Pedido =================");
-		System.out.print("\n¿Esta seguro de querer cancelar su pedido?(Si/No) ");
-		String res="";
+		System.out.println("\t================= CANCELACION DE SU PEDIDO =================");
+		System.out.print("\n¿Esta seguro de querer cancelar su pedido?(1.Si/2.No): ");
+		int res=0;
 		Scanner reader = new Scanner(System.in);
-		res = reader.nextLine();
-		while(res!= "Si" || res!= "si"|| res!= "SI" ||res!="No"||res!="no"||res!="NO") {
-			System.out.println("Ingrese una opcion valida ");
-			res = reader.nextLine();
+		res = reader.nextInt();
+		
+		while(res!= 1 && res!= 2) {
+			System.out.print("Ingrese una opcion valida: ");
+			res = reader.nextInt();
 		}
-		if(res=="Si"|| res== "si"|| res== "SI") {
+		
+		if(res==1) {
 			System.out.print("Ingrese el codigo de su pedido: ");
 			cod=reader.nextInt();
 			Node<Carro> auxNode=carrito.getFirst();
@@ -49,26 +77,24 @@ public class Comprador extends Usuario {
 				auxNode=carrito.getFirst();
 				if(auxNode.getData().getCodigoVenta()==cod) {
 					auxNode.getData().vaciarCarro();
-					System.out.println("Su pedido ha sido cancelado");
+					System.out.println("Su pedido ha sido cancelado correctamente");
 				}
 			}	
-			System.out.print("El numero de pedido ingresado no existe");
-			
+			System.out.println("El numero de pedido ingresado no existe");
+			System.out.println("\t--No hay pedido que eliminar--");
 		}
 		else{
-			
-			System.out.println("Su pedido no se cancelara");
-			System.out.println(" *** Gracias por su compra *** ");
+			System.out.println("\nSu pedido no se cancelara");
+			System.out.println("\t\t\t *** GRACIAS POR SU COMPRA *** ");
 		}
 	}
 	
 	@Override
 	public String toString() {
 		
-		return "\n============ Comprador ============\\n"  
-				+ "Nombre del comprador:\t" + getNombre()  
-				+" Apellidos:\t" + getApellidos()+"\nDNI:\t" + getDni()+ "\nEmail:\t" + getEmail() 
-				+ "\n Numero telefonico:\t"+ getTelefono()+ "\n Calificacion:\t" + getCalificacion();
+		return "\n\t============ COMPRADOR ============\n\n"  
+				+ " Nombre:\t" + getNombre()  
+				+"\n Apellidos:\t" + getApellidos()+"\n DNI:\t\t" + getDni()+ "\n Email:\t\t" + getEmail() 
+				+ "\n Telefono:\t"+ getTelefono()+ "\n Calificacion:\t" + getCalificacion();
 	}
-	
 }
