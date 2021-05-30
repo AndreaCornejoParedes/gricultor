@@ -9,6 +9,7 @@ public class Carro  {
 	private int cantidad = 0;
 	private double descuento = 0.0;
 	private Producto producto;
+	
 	public Carro() {
 		arregloCarro = new ArrayList<Producto>();
 	}
@@ -22,19 +23,25 @@ public class Carro  {
 		this.descuento = descuento;
 	}
 	
-	public int getCodigoVenta() { return codigoVenta; }
+	public int getCodigoVenta() { 
+		return codigoVenta;
+	}
 	
 	public void setCodigoVenta(int codigoVenta) {
 		this.codigoVenta = codigoVenta;
 	}
 	
-	public int getCodPro() { return codPro;}
+	public int getCodPro() { 
+		return codPro;
+	}
 	
-	public void setCodPro(int codPro) {
+	public void setCodPro(int codPro) {	
 		this.codPro = codPro;
 	}
 	
-	public int getCantidad() {	return cantidad;}
+	public int getCantidad() {	
+		return cantidad;
+	}
 	
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
@@ -47,10 +54,13 @@ public class Carro  {
 	public void setDescuento(double descuento) {
 		this.descuento = descuento;
 	}
-	public Producto getProducto () { return producto; }
+	public Producto getProducto () { 
+		return producto; 
+	}
 	public void setProducto(Producto producto) {
 		this.producto = producto;
 	}
+	
 	//MetodoAgregarDescuento
 	public void agregarDescuento(double descuento) {
 		this.descuento +=descuento;
@@ -59,9 +69,29 @@ public class Carro  {
 	public void agregarCantidad(int cantidad){
 		this.cantidad += cantidad;
 	}
+	@Override
+	//
+	public boolean equals(Object obj) {
+		//comprueba el que el detalle de la venta no sea nulo
+		if (obj != null && obj instanceof Producto) {
+			boolean productoIgual = this.codPro == ((Producto) obj).getCodPro();
+			boolean ventaIgual = this.codigoVenta == ((Carro) obj).getCodigoVenta();
+			return productoIgual && ventaIgual;
+		}
+		return super.equals(obj);
+	}
+	
 	
 	////////////////////////////////////////////////////////
 	public void agregarItem (Producto ventita) {
+		int codiPro = ventita.getCodPro();
+		if (this.prodCarro(codiPro)){
+			this.agregarCantidad(cantidad);;
+			this.agregarDescuento(descuento);
+		} else{
+			ventita.setCodPro(codPro);
+			arregloCarro.add(ventita);
+		}
 		
 	}
 	private int getIndex(int codPro) {
@@ -97,30 +127,7 @@ public class Carro  {
 		return getIndex (codPro) != noExisteElem;
 	}
 	
-	/*public void agregarCantidad (int codPro, int cantidad) {
-		Producto ventita = getProducto(codPro);
-		if (ventita != null)
-			ventita.agregarCantidad(cantidad);
-	}
-	public void agregarDescuento(int codPro, double descuento) {
-		Producto ventita = getProducto(codPro);
-		if(ventita != null)
-			ventita.agregarDescuento(descuento);
-	}*/
 	//////////////////////////////////////////////////////////////////////////
-	
-	
-	
-	@Override
-	//
-	public boolean equals(Object obj) {
-		//comprueba el que el detalle de la venta no sea nulo
-		if (obj != null && obj instanceof Producto) {
-			boolean productoIgual = this.codPro == ((Producto) obj).getCodPro();
-			boolean ventaIgual = this.codigoVenta == ((Carro) obj).getCodigoVenta();
-			return productoIgual && ventaIgual;
-		}
-		return super.equals(obj);
-	}
+
 			
 }
