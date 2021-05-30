@@ -1,36 +1,126 @@
-public class Carro extends Producto{ //Herencia_De_Producto
-	//Atributos_de_la_clase_Producto 
-	private int CantidadPro;
-	private float CostoPed;
+import java.util.*;
+public class Carro  { 
+	/**
+	 * Atributos_de_la_clase_Producto
+	 */
+	public final int noExisteElem = -1;
+	private int codigoVenta;
+	private int codPro;
+	private int cantidad = 0;
+	private double descuento = 0.0;
+	private Producto producto;
+	public Carro() {
+		arregloCarro = new ArrayList<Producto>();
+	}
+	private ArrayList<Producto> arregloCarro;
 	
-	public Carro(int codPro, String nomPro, String desPro, int cantPro, float precio, String ubiPro, int datePro,
-			String variedad, String destino, int cantidadPro, float costoPed) {
-		super(codPro, nomPro, desPro, cantPro, precio, ubiPro, datePro, variedad);
-		this.setCantidadPro(cantidadPro);
-		this.setCostoPed(CostoPed);
+	public Carro(int codigoVenta, int codPro, int cantidad, double descuento) {
+		super();
+		this.codigoVenta = codigoVenta;
+		this.codPro = codPro;
+		this.cantidad = cantidad;
+		this.descuento = descuento;
 	}
 	
-	public int getCantidadPro() {return CantidadPro;}
-	public void setCantidadPro(int cantidadPro) {
-		if (CantidadPro>0)
-			this.CantidadPro = cantidadPro;
-		else 
-			this.CantidadPro = 0;
-			System.out.print("No hay productos introducidos"+this.CantidadPro);
+	public int getCodigoVenta() { return codigoVenta; }
+	
+	public void setCodigoVenta(int codigoVenta) {
+		this.codigoVenta = codigoVenta;
 	}
-	public float CostoPed() {
-		return CostoPed;
+	
+	public int getCodPro() { return codPro;}
+	
+	public void setCodPro(int codPro) {
+		this.codPro = codPro;
 	}
-	public void setCostoPed (float costoPed) {
-		this.CostoPed= costoPed;
+	
+	public int getCantidad() {	return cantidad;}
+	
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
-	public void almacenar () {}
-	public void Vaciar() {}
+	
+	public double getDescuento() {
+		return descuento;
+	}
+	
+	public void setDescuento(double descuento) {
+		this.descuento = descuento;
+	}
+	public Producto getProducto () { return producto; }
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+	//MetodoAgregarDescuento
+	public void agregarDescuento(double descuento) {
+		this.descuento +=descuento;
+	}
+	//MetodoAgregarCantidad
+	public void agregarCantidad(int cantidad){
+		this.cantidad += cantidad;
+	}
+	
+	////////////////////////////////////////////////////////
+	public void agregarItem (Producto ventita) {
+		
+	}
+	private int getIndex(int codPro) {
+		Producto ventita = new Producto();
+		ventita.setCodPro(codPro);
+		
+		return arregloCarro.indexOf(ventita);
+	}
+	public Producto getProducto (int codPro) {
+		Producto ventita = null;
+		int index = getIndex(codPro);
+		if (index != noExisteElem) {
+			ventita = arregloCarro.get(index);
+		}
+		return ventita;
+	}
+	
+	public ArrayList <Producto> getCarro(){
+		return arregloCarro;
+	}
+	public void vaciarCarro () { /*vaciar el carro una vez realizada la compra*/
+		arregloCarro.clear();
+	}
+	
+	public void borrarItem (int codPro) { //eliminar un elemento del carrito
+		int index = getIndex (codPro);
+		if (index != noExisteElem) {
+			arregloCarro.remove(index);
+		}
+	}
+	
+	public boolean prodCarro (int codPro) { //verifica que haya elementos en el carro
+		return getIndex (codPro) != noExisteElem;
+	}
+	
+	/*public void agregarCantidad (int codPro, int cantidad) {
+		Producto ventita = getProducto(codPro);
+		if (ventita != null)
+			ventita.agregarCantidad(cantidad);
+	}
+	public void agregarDescuento(int codPro, double descuento) {
+		Producto ventita = getProducto(codPro);
+		if(ventita != null)
+			ventita.agregarDescuento(descuento);
+	}*/
+	//////////////////////////////////////////////////////////////////////////
+	
+	
+	
 	@Override
-	public String toString() {
-		return " \t Detalles del pedido: \t"
-				+ "Cantidad de productos" + this.CantidadPro + "\n";
+	//
+	public boolean equals(Object obj) {
+		//comprueba el que el detalle de la venta no sea nulo
+		if (obj != null && obj instanceof Producto) {
+			boolean productoIgual = this.codPro == ((Producto) obj).getCodPro();
+			boolean ventaIgual = this.codigoVenta == ((Carro) obj).getCodigoVenta();
+			return productoIgual && ventaIgual;
+		}
+		return super.equals(obj);
 	}
-	
-	
+			
 }
