@@ -2,34 +2,47 @@ import java.util.ArrayList;
 
 
 public class Usuario {
-	private String dni;
+	private String id;
 	private String nombre;
 	private String apellidos;
 	private String email;
 	private String contraseña;
 	private ArrayList<Integer> calificacion=new ArrayList<Integer>();
 	private String telefono;
-	public Usuario(String dni, String nombre, String apellidos, String email, String contraseña, ArrayList<Integer> calificacion,
-			String telefono) {
+	
+	public Usuario() {
+		java.util.Scanner input = new java.util.Scanner(System.in);
+		System.out.println("¡Que gusto conocernos!");
+		System.out.println("Ingrese su nombre");
+		this.nombre = input.next();
+		System.out.println("Ingrese su apellido");
+		this.apellidos = input.next();
+		System.out.println("Ingrese su email");
+		this.email = input.next();
+		System.out.println("Ingrese la contraseña que va a utilizar");
+		this.contraseña = input.next();
+		System.out.println("Ingrese su celular");
+		this.telefono = input.next();;
+	}
+	
+	public Usuario(String id, String contraseña) {
 		super();
-		this.dni = dni;
-		this.nombre = nombre;
-		this.apellidos = apellidos;
-		this.email = email;
+		this.id = id;
 		this.contraseña = contraseña;
-		this.calificacion=null;
-		this.telefono = telefono;
 	}
-	public Usuario(String nombre, String apellidos) {
-		this.nombre = nombre;
-		this.apellidos = apellidos;
-		
+	public Usuario(int x) {
+		super();
+		this.id =" ";
+		this.contraseña = " ";
 	}
-	public String getDni() {
-		return dni;
+	
+	
+
+	public String getId() {
+		return id;
 	}
-	public void setDni(String dni) {
-		this.dni = dni;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getNombre() {
 		return nombre;
@@ -87,7 +100,26 @@ public class Usuario {
 			sumatoria+=this.calificacion.get(i);
 			i++;
 		}
-		return sumatoria/i;
+		if(calificacion.size()>0) {
+			return sumatoria/i;}
+		else {
+			return 0;
+		}
 	}
+	public boolean equals (Object o) {
+		if (o instanceof Usuario) {
+			Usuario p = (Usuario) o;
+			
+			return (this.getNombre().equals(p.getNombre()))&&(this.getId()==(p.getId()));
+		}
+		return false;
+	}
+	@Override
+	public String toString() {
+		return "¡Gusto en conocernos! El usuario es: " + nombre + " " + apellidos + ", Si deseas contactarlo: \n Su email es: " +
+	email +" y su telefono es : "+ telefono + 
+				" Por su ventas pasadas tiene una calificacion de : "+this.promcalif();
+	}
+	
 	
 }

@@ -6,6 +6,13 @@ public class Agricultor extends Usuario{
 		super(nombre, apellidos);
 		// TODO Auto-generated constructor stub
 	}
+	public Agricultor() {
+		super();
+	}
+	public Agricultor(int x) {
+		super(x);
+	}
+	
 	
 	
 }

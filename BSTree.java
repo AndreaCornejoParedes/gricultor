@@ -1,5 +1,3 @@
-import BSTree.Node;
-
 public class BSTree<E extends Comparable <E>> {
 	class Node{
 		protected E data;

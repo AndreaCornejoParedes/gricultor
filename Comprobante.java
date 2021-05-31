@@ -1,13 +1,16 @@
-package Default;
-
 import java.util.Date;
+import java.util.Scanner;
 
-public abstract class Comprobante {
+public class Comprobante {
 	private String numeroComprobante;
 	private Date fechaEmision;
 	private String tipoDoc;
 	private Double MontoTotal;
-	public Comprobante() {
+	private OrderListLinked<Producto> productos;
+	
+	public Comprobante(OrderListLinked<Producto> listaProductos) {
+		//this.productos =  new OrderListLinked<Producto>();
+		this.productos = listaProductos;
 		this.numeroComprobante= "0";
 		this.fechaEmision 	= null;
 		this.tipoDoc = "1";
@@ -43,18 +46,45 @@ public abstract class Comprobante {
 	}
 
 	public void setMontoTotal(Double montoTotal) {
-		MontoTotal = montoTotal;
+		if(montoTotal < 0)
+			MontoTotal = 0.0;
+		else {
+			MontoTotal = montoTotal;
+		}
 	}
 
-	public abstract void agregarComprobante();
-	public abstract void EliminarComprobante();
+	public  void agregarComprobante() {
+		if(!this.productos.isEmptyList()) {
+			Node<Producto>  aux = this.productos.getFirst();
+			if(this.productos.getFirst() != null && aux.getNext() == null) {
+				this.MontoTotal = (double) (aux.getData().getCantPro() * aux.getData().getPrecio());
+			}
+			else {
+				while(aux.getNext() != null) {
+					this.MontoTotal += aux.getData().getPrecio() * aux.getData().getCantPro();
+					aux = aux.getNext();
+				}
+				this.MontoTotal += aux.getData().getPrecio() * aux.getData().getCantPro();
+			}
+			this.fechaEmision = new Date();
+			this.numeroComprobante = Integer.toString((int)Math.random()*10000);
+		}
+		else {
+			System.out.println("No hay productos para hacer el comprobante.");
+		}
+	}
+	public  void EliminarComprobante() {
+		
+	}
 	
 	public String toString() {
-		return "=========== Comprobante ===========" +
+		return "===========================" +
 				"\nNro:	" + this.getNumeroComprobante()+
 				"\nFecha de emision: "+this.fechaEmision.toString()+
 				"\nTipo documento: "+this.getTipoDoc() + 
-				"\nMonto total: "+this.getMontoTotal();
+				"\nMonto total: "+this.getMontoTotal() +
+				"\n=========== Productos ===========\n" + 
+				this.productos.toString();
 		
 	}
 }

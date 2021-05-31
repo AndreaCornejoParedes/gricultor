@@ -1,40 +1,133 @@
-
-public class Carro// extends <LinkedList>
-{
-	private int codigoPedido;
-	private String destino;
-	private int Cantidad;
-	public Carro(int codigoPedido, String destino, int cantidad) {
+import java.util.*;
+public class Carro  { 
+	/**
+	 * Atributos_de_la_clase_Producto
+	 */
+	public final int noExisteElem = -1;
+	private int codigoVenta;
+	private int codPro;
+	private int cantidad = 0;
+	private double descuento = 0.0;
+	private Producto producto;
+	
+	public Carro() {
+		arregloCarro = new ArrayList<Producto>();
+	}
+	private ArrayList<Producto> arregloCarro;
+	
+	public Carro(int codigoVenta, int codPro, int cantidad, double descuento) {
 		super();
-		this.codigoPedido = codigoPedido;
-		this.destino = destino;
-		Cantidad = cantidad;
+		this.codigoVenta = codigoVenta;
+		this.codPro = codPro;
+		this.cantidad = cantidad;
+		this.descuento = descuento;
 	}
-	public int getCodigoPedido() {
-		return codigoPedido;
+	
+	public int getCodigoVenta() { 
+		return codigoVenta;
 	}
-	public void setCodigoPedido(int codigoPedido) {
-		this.codigoPedido = codigoPedido;
+	
+	public void setCodigoVenta(int codigoVenta) {
+		this.codigoVenta = codigoVenta;
 	}
-	public String getDestino() {
-		return destino;
+	
+	public int getCodPro() { 
+		return codPro;
 	}
-	public void setDestino(String destino) {
-		this.destino = destino;
+	
+	public void setCodPro(int codPro) {	
+		this.codPro = codPro;
 	}
-	public int getCantidad() {
-		return Cantidad;
+	
+	public int getCantidad() {	
+		return cantidad;
 	}
+	
 	public void setCantidad(int cantidad) {
-		Cantidad = cantidad;
+		this.cantidad = cantidad;
+	}
+	
+	public double getDescuento() {
+		return descuento;
+	}
+	
+	public void setDescuento(double descuento) {
+		this.descuento = descuento;
+	}
+	public Producto getProducto () { 
+		return producto; 
+	}
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+	
+	//MetodoAgregarDescuento
+	public void agregarDescuento(double descuento) {
+		this.descuento +=descuento;
+	}
+	//MetodoAgregarCantidad
+	public void agregarCantidad(int cantidad){
+		this.cantidad += cantidad;
 	}
 	@Override
-	public String toString() {
-		return "El carrito tiene:"
-				+ "Codigo del pedido =" + codigoPedido
-				+ "El pedido esta dirigido hacia: " + destino 
-				+ "Cantidad de productos" + Cantidad + "]";
+	//
+	public boolean equals(Object obj) {
+		//comprueba el que el detalle de la venta no sea nulo
+		if (obj != null && obj instanceof Producto) {
+			boolean productoIgual = this.codPro == ((Producto) obj).getCodPro();
+			boolean ventaIgual = this.codigoVenta == ((Carro) obj).getCodigoVenta();
+			return productoIgual && ventaIgual;
+		}
+		return super.equals(obj);
 	}
 	
 	
+	////////////////////////////////////////////////////////
+	public void agregarItem (Producto ventita) {
+		int codiPro = ventita.getCodPro();
+		if (this.prodCarro(codiPro)){
+			this.agregarCantidad(cantidad);;
+			this.agregarDescuento(descuento);
+		} else{
+			ventita.setCodPro(codPro);
+			arregloCarro.add(ventita);
+		}
+		
+	}
+	private int getIndex(int codPro) {
+		Producto ventita = new Producto();
+		ventita.setCodPro(codPro);
+		
+		return arregloCarro.indexOf(ventita);
+	}
+	public Producto getProducto (int codPro) {
+		Producto ventita = null;
+		int index = getIndex(codPro);
+		if (index != noExisteElem) {
+			ventita = arregloCarro.get(index);
+		}
+		return ventita;
+	}
+	
+	public ArrayList <Producto> getCarro(){
+		return arregloCarro;
+	}
+	public void vaciarCarro () { /*vaciar el carro una vez realizada la compra*/
+		arregloCarro.clear();
+	}
+	
+	public void borrarItem (int codPro) { //eliminar un elemento del carrito
+		int index = getIndex (codPro);
+		if (index != noExisteElem) {
+			arregloCarro.remove(index);
+		}
+	}
+	
+	public boolean prodCarro (int codPro) { //verifica que haya elementos en el carro
+		return getIndex (codPro) != noExisteElem;
+	}
+	
+	//////////////////////////////////////////////////////////////////////////
+
+			
 }

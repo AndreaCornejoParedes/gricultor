@@ -1,47 +1,102 @@
+import java.util.LinkedList;
+import java.util.Scanner;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Web {
-	private ListLinked Usuario;
-	private ListLinked Productos;
+	private ListLinked Usuarios;
+	private BSTree CategoriaProductos;
+	File archivo = null;
+    FileReader fr = null;
+    BufferedReader br = null;
 	
-	public Web() {
+	public ListLinked getUsuarios() {
+		return Usuarios;
+	}
+	public void setUsuarios(ListLinked usuarios) {
+		Usuarios = usuarios;
+	}
+	
+	public BSTree getCategoriaProductos() {
+		return CategoriaProductos;
+	}
+	public void setCategoriaProductos(BSTree categoriaProductos) {
+		CategoriaProductos = categoriaProductos;
+	}
+	public Web() throws ItemDuplicated {
 		super();
-		Usuario=new ListLinked();
-		Productos=new ListLinked();
+		boolean x=true;
+		this.Usuarios=new ListLinked();
+		this.CategoriaProductos= new BSTree();
+		LinkedList productos = new LinkedList<Producto>();
+		CategoriaProducto CatCereales= new CategoriaProducto(1, "Cereales");
+		CategoriaProducto CatTallo= new CategoriaProducto(2, "Tallo");
+		CategoriaProducto CatHortalizas= new CategoriaProducto(3, "Hortalizas");
+		CategoriaProducto CatTuberculo= new CategoriaProducto(4, "Tuberculo");
+		CategoriaProductos.insert(CatCereales);
+		CategoriaProductos.insert(CatTallo);
+		CategoriaProductos.insert(CatHortalizas);
+		CategoriaProductos.insert(CatTuberculo );
 	}
 	
-	public ListLinked<Integer> ocurrencias(String x){
-		int con=0;
-		int arr[] = new int[Productos.length()];
-		TDAList <Integer> list=new ListLinked<Integer>();
-		Node<Producto> aux=Productos.getFirst();
-		for (int i=0;aux!=null;aux=aux.getNext(),i++) {
-			if (aux.getData().equals(x)) {
-				arr[con]=i;
-				con++;
+	public Usuario validarUsuario() throws NumberFormatException, IOException, ItemDuplicated  {
+			boolean state=false;
+		if(this.Usuarios.isEmptyList()) {
+			System.out.println("¡No hay usuarios registrados!");
+			SourceGricultor.inicio();
+			return null;
+		}
+			while(state==false) {
+		java.util.Scanner input = new java.util.Scanner(System.in);
+			System.out.println("¡Que gusto volvernos a ver!");
+			System.out.println("Ingrese su id");
+			String id = input.next();
+			System.out.println("Ingrese su contraseña");
+			String contraseña = input.next();
+	         String posicion = Files.readAllLines(Paths.get("E:\\LABORATORIOAED\\archivo.txt")).get(Integer.valueOf(id));
+	     
+	     	Usuario auxNode = new Usuario(id,contraseña);
+	         if(posicion.equals(contraseña)) {        		 
+	        		 System.out.println(" USUARIO VALIDO, BIENVENIDO ##########");
+	        		 state=true;
+	        		 return auxNode;
+	        	 }
 			}
-		}
-		for(int j=0;j<con;j++) {
-			list.insertFirst(arr[j]);
-		}
-		return (ListLinked<Integer>) list;
+			 System.out.println("USUARIO INVÁLIDO");
+		        return null;
+			
 	}
-	
-//	public ListArray<OrderListLinked<Producto>> clasififcar(float x) {
-//		ListArray<OrderListLinked<T>> clasificacion = new ListArray<OrderListLinked<T>>(2);
-//		OrderListLinked<T> menores = new OrderListLinked<T>();
-//		OrderListLinked<T> mayores = new OrderListLinked<T>();
-//		Node<T> aux = this.getFirst();
-//		while(aux.getNext() != null) {
-//			if(aux.getData().compareTo(x) > 0 || aux.getData().compareTo(x) == 0) {
-//				mayores.insert(aux.getData());
-//			}
-//			else {
-//				menores.insert(aux.getData());
-//			}
-//			aux = aux.getNext();
-//		}
-//		clasificacion.insertFirst(menores);
-//		clasificacion.insertLast(mayores);
-//		return clasificacion;
-//	}
+	public int añadirUsuario(Usuario User) throws FileNotFoundException  {
+		int cont=0;
+		archivo = new File ("E:\\LABORATORIOAED\\archivo.txt");
+		fr = new FileReader (archivo);
+        br = new BufferedReader(fr);
+	    FileWriter fichero = null;
+        PrintWriter pw = null;
+        try
+        {	
+            fichero = new FileWriter("E:\\LABORATORIOAED\\archivo.txt",true);
+            pw = new PrintWriter(fichero);
+            String linea;
+            while((linea=br.readLine())!=null) {
+            	cont++;
+            }
+            pw.println(User.getContraseña());
+            User.setId(String.valueOf(cont)); 
+            return cont;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           try {
+           
+           if (null != fichero)
+              fichero.close();
+           } catch (Exception e2) {
+              e2.printStackTrace();
+           }
+        }
+		return 0;
+	}
 }

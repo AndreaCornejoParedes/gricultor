@@ -60,6 +60,21 @@ public class ListLinked <T> implements TDAList<T>{
 		this.count++;
 		
 	}
+	public void showNode(T x) {
+		int pos=this.search(x);
+		int i=0;
+		Node<T> auxNode=this.first;
+		if(auxNode.getData().equals(x)) {
+			System.out.println(auxNode);
+			return;
+		}else if (pos!= -1) {			
+			while(i<pos-1) {
+				auxNode=auxNode.getNext();
+				i++;
+			}
+			System.out.println(auxNode);
+		}
+	}
 
 	
 	public void remove(T x) {		
