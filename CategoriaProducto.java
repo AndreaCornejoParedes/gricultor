@@ -2,13 +2,13 @@ import java.util.Scanner;
 public class CategoriaProducto implements Comparable<CategoriaProducto>{
 	private int codCat;
 	private String nomCat;
-	private ListLinked Productos;
+	private ListLinked<Producto> Productos;
 	
 	public CategoriaProducto(int codCat, String nomCat) {
 		super();
 		this.codCat=codCat;
 		this.nomCat=nomCat;
-		this.Productos = null;
+		this.Productos = new ListLinked();
 	}
 	
 	public CategoriaProducto() {
@@ -18,7 +18,7 @@ public class CategoriaProducto implements Comparable<CategoriaProducto>{
 	}
 	public void añadirProducto() {
 		Producto auxProducto = new Producto();
-		this.getProductos().insertLast(auxProducto);
+		this.Productos.insertLast(auxProducto);
 	}	
 	public int getCodCat() {
 		return codCat;
@@ -44,7 +44,7 @@ public class CategoriaProducto implements Comparable<CategoriaProducto>{
 	public void setProductos(ListLinked productos) {
 		Productos = productos;
 	}
-
+	
 	public ListLinked<Integer> ocurrencias(String x){
 		int con=0;
 		int arr[] = new int[Productos.length()];
@@ -87,7 +87,7 @@ public class CategoriaProducto implements Comparable<CategoriaProducto>{
 	public boolean equals(Object o) {
 		if(o instanceof CategoriaProducto) {
 			CategoriaProducto p = (CategoriaProducto) o;
-			return this.nomCat == p.getNomCat();
+			return this.codCat == p.getCodCat();
 		}
 		return false;
 	}

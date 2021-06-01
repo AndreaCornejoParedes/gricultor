@@ -6,7 +6,7 @@ import sun.jvm.hotspot.oops.ObjectHistogram;
 
 
 public class SourceGricultor {
-	public static void main(String[] args) throws NumberFormatException, IOException, ItemDuplicated {
+	public static void main(String[] args) throws NumberFormatException, IOException, ItemDuplicated, ItemNoFound {
 		java.util.Scanner input = new java.util.Scanner(System.in);	
 		Usuario NewUser = null;	
 		int aux;
@@ -17,7 +17,6 @@ public class SourceGricultor {
 		
 		System.out.println(NewUser);
 		//SourceGricultor.menuopciones(NewUser,Gricultor);
-		
 		
 		
 	}
@@ -61,7 +60,7 @@ public class SourceGricultor {
 		}
 
 	}
-	public static void menuopciones(Agricultor newUser, Web gricultor) {
+	public static void menuopciones(Agricultor newUser, Web gricultor) throws ItemNoFound {
 		System.out.println("¿Que haremos hoy?");
 		System.out.println("Opc1 : Añadir producto a la venta");
 		System.out.println("Opc2 : Ver productos:");
@@ -72,7 +71,7 @@ public class SourceGricultor {
 		switch (opc) {
 		case 1:
 			System.out.println(gricultor.getCategoriaProductos().toString());
-			
+			gricultor.modiProducto();
 			break;
 		case 2:
 			

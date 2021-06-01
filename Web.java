@@ -5,24 +5,28 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class Web {
-	private ListLinked Usuarios;
-	private BSTree CategoriaProductos;
+	private ListLinked<Usuario> Usuarios;
+	private BSTree<CategoriaProducto> CategoriaProductos;
 	File archivo = null;
     FileReader fr = null;
     BufferedReader br = null;
+    private CategoriaProducto CatCereales= new CategoriaProducto(1, "Cereales");
+    private CategoriaProducto CatTallo= new CategoriaProducto(2, "Tallo");
+    private CategoriaProducto CatHortalizas= new CategoriaProducto(3, "Hortalizas");
+    private CategoriaProducto CatTuberculo= new CategoriaProducto(4, "Tuberculo");
 	
-	public ListLinked getUsuarios() {
+	public ListLinked<Usuario> getUsuarios() {
 		return Usuarios;
 	}
-	public void setUsuarios(ListLinked usuarios) {
+	public void setUsuarios(ListLinked<Usuario> usuarios) {
 		Usuarios = usuarios;
 	}
 	
-	public BSTree getCategoriaProductos() {
+	public BSTree<CategoriaProducto> getCategoriaProductos() {
 		return CategoriaProductos;
 	}
-	public void setCategoriaProductos(BSTree categoriaProductos) {
-		CategoriaProductos = categoriaProductos;
+	public void setCategoriaProductos(BSTree<CategoriaProducto> categoriaProductos) {
+		this.CategoriaProductos = categoriaProductos;
 	}
 	public Web() throws ItemDuplicated {
 		super();
@@ -30,14 +34,10 @@ public class Web {
 		this.Usuarios=new ListLinked();
 		this.CategoriaProductos= new BSTree();
 		LinkedList productos = new LinkedList<Producto>();
-		CategoriaProducto CatCereales= new CategoriaProducto(1, "Cereales");
-		CategoriaProducto CatTallo= new CategoriaProducto(2, "Tallo");
-		CategoriaProducto CatHortalizas= new CategoriaProducto(3, "Hortalizas");
-		CategoriaProducto CatTuberculo= new CategoriaProducto(4, "Tuberculo");
-		CategoriaProductos.insert(CatCereales);
-		CategoriaProductos.insert(CatTallo);
-		CategoriaProductos.insert(CatHortalizas);
-		CategoriaProductos.insert(CatTuberculo );
+		CategoriaProductos.insert(this.CatCereales);
+		CategoriaProductos.insert(this.CatTallo);
+		CategoriaProductos.insert(this.CatHortalizas);
+		CategoriaProductos.insert(this.CatTuberculo );
 	}
 	
 	public Usuario validarUsuario() throws NumberFormatException, IOException, ItemDuplicated  {
@@ -98,5 +98,34 @@ public class Web {
            }
         }
 		return 0;
+	}
+	@SuppressWarnings("unchecked")
+	public void modiProducto() throws ItemNoFound{
+		int opc=0;
+		boolean seguir=true;
+		while (seguir) {
+			Scanner sc=new Scanner(System.in);
+			System.out.println("1.Cereales\n2.Tallos\n3.Hortalizas\n4.Tubérculos\n5.Salir\nSeleccione la categoría: ");
+			opc=sc.nextInt();
+			switch(opc) {
+			case 1:
+				this.CategoriaProductos.search(this.CatCereales).añadirProducto();
+				break;
+			case 2:
+				this.CategoriaProductos.search(this.CatTallo).añadirProducto();
+				break;
+			case 3:
+				this.CategoriaProductos.search(this.CatHortalizas).añadirProducto();
+				break;
+			case 4:
+				this.CategoriaProductos.search(this.CatTuberculo).añadirProducto();
+				break;
+			case 5:
+				seguir=false;
+				break;
+			default:
+				System.out.println("Opción inválida...");
+			}
+		}
 	}
 }

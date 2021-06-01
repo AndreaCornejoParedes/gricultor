@@ -10,6 +10,24 @@ public class BSTree<E extends Comparable <E>> {
 			this.left=left;
 			this.right=right;
 		}
+		public E getData() {
+			return data;
+		}
+		public void setData(E data) {
+			this.data = data;
+		}
+		public Node getLeft() {
+			return left;
+		}
+		public void setLeft(Node left) {
+			this.left = left;
+		}
+		public Node getRight() {
+			return right;
+		}
+		public void setRight(Node right) {
+			this.right = right;
+		}
 	}
 	private Node rootNode;
 	public BSTree(){
@@ -17,6 +35,12 @@ public class BSTree<E extends Comparable <E>> {
 	}
 	public boolean isEmpty() {
 		return this.rootNode==null;
+	}
+	public Node getRootNode() {
+		return rootNode;
+	}
+	public void setRootNode(Node rootNode) {
+		this.rootNode = rootNode;
 	}
 	public void insert(E x) throws ItemDuplicated{
 		this.rootNode=insertRec(x, this.rootNode);
@@ -76,7 +100,8 @@ public class BSTree<E extends Comparable <E>> {
 	}
 	
 	public String toString() {
-		return "BSTree [rootNode=" + rootNode + "]";
+		inOrden(this.rootNode);
+		return "";
 	}
 	public void inOrden() {
 		if(this.isEmpty())
