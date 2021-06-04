@@ -18,7 +18,6 @@ public class Boleta extends Comprobante{
 		this.nombre = in.next();
 		System.out.println("\nIngrese el numero del documento: ");
 		this.nroDoc = in.next();
-		in.close();
 	}
 
 	public String toString() {

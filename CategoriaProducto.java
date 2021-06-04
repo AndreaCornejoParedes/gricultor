@@ -1,3 +1,4 @@
+import java.text.ParseException;
 import java.util.Scanner;
 public class CategoriaProducto implements Comparable<CategoriaProducto>{
 	private int codCat;
@@ -13,10 +14,50 @@ public class CategoriaProducto implements Comparable<CategoriaProducto>{
 	
 	public CategoriaProducto() {
 		super();
-		
-		
 	}
-	public void añadirProducto() {
+	public void listarProductos() {
+		
+		System.out.println("\t==========================================");
+		System.out.println("\t                Productos	                ");
+		System.out.println("\t==========================================");
+		System.out.println("\tMostrando productos para la categoria: "+this.nomCat);
+		System.out.println("\tCodigo: "+this.codCat);
+		if(this.Productos.isEmptyList()) {
+			System.out.print("\tAun no existen productos en esta categoria.....");
+		}
+		else{
+			System.out.println(this.Productos);
+		}
+	}
+	public void agregarStockProducto(int i,int cant) {
+		if(this.Productos.isEmptyList()) {
+			System.out.println("\t Error: Esta categoria esta aun vacia, agrege productos.");
+		}
+		else {
+			if(this.Productos.getCount() < i) {
+				System.out.println("\tIndex no valido");
+			}
+			Producto x = this.Productos.search(i);
+			x.aumentarStock(cant);
+		}
+	}
+	
+	public void eliminarProducto(int i) {
+		if(this.Productos.isEmptyList()) {
+			System.out.println("\tEsta categoria esta aun vacia, agrege productos.");
+		}
+		else {
+			if(this.Productos.getCount() < i) {
+				System.out.println("\tIndex no valido");
+			}
+			Producto x = this.Productos.search(i);
+			this.Productos.remove(x);
+		}
+	}
+	
+	
+	
+	public void agregarProducto() throws ParseException {
 		Producto auxProducto = new Producto();
 		this.Productos.insertLast(auxProducto);
 	}	

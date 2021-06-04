@@ -3,131 +3,132 @@ public class Carro  {
 	/**
 	 * Atributos_de_la_clase_Producto
 	 */
-	public final int noExisteElem = -1;
-	private int codigoVenta;
-	private int codPro;
-	private int cantidad = 0;
-	private double descuento = 0.0;
-	private Producto producto;
+	private String codigoVenta;
+	private int CantidadProductos = 0;
+	private OrderListLinked<Producto> arregloCarro;
+	private Double MontoTotal;
 	
 	public Carro() {
-		arregloCarro = new ArrayList<Producto>();
+		this.setCodigoVenta();
+		this.CantidadProductos = 0;
+		this.MontoTotal = 0.0;
+		this.arregloCarro = new OrderListLinked<Producto>();
 	}
-	private ArrayList<Producto> arregloCarro;
-	
-	public Carro(int codigoVenta, int codPro, int cantidad, double descuento) {
-		super();
-		this.codigoVenta = codigoVenta;
-		this.codPro = codPro;
-		this.cantidad = cantidad;
-		this.descuento = descuento;
+	public OrderListLinked<Producto> getProductosCarrito(){
+		return this.arregloCarro;
 	}
-	
-	public int getCodigoVenta() { 
+	public String getCodigoVenta() { 
 		return codigoVenta;
 	}
-	
-	public void setCodigoVenta(int codigoVenta) {
-		this.codigoVenta = codigoVenta;
+	public boolean isEmpty(){
+		return this.arregloCarro.isEmptyList();
 	}
 	
-	public int getCodPro() { 
-		return codPro;
+	public void setCodigoVenta() {
+		this.codigoVenta = Integer.toString((int)Math.random()*1000);
 	}
 	
-	public void setCodPro(int codPro) {	
-		this.codPro = codPro;
+	public int getCantidadProductos() {	
+		return CantidadProductos;
 	}
 	
-	public int getCantidad() {	
-		return cantidad;
-	}
-	
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
-	}
-	
-	public double getDescuento() {
-		return descuento;
-	}
-	
-	public void setDescuento(double descuento) {
-		this.descuento = descuento;
-	}
-	public Producto getProducto () { 
-		return producto; 
-	}
-	public void setProducto(Producto producto) {
-		this.producto = producto;
-	}
-	
-	//MetodoAgregarDescuento
-	public void agregarDescuento(double descuento) {
-		this.descuento +=descuento;
-	}
-	//MetodoAgregarCantidad
-	public void agregarCantidad(int cantidad){
-		this.cantidad += cantidad;
-	}
-	@Override
-	//
-	public boolean equals(Object obj) {
-		//comprueba el que el detalle de la venta no sea nulo
-		if (obj != null && obj instanceof Producto) {
-			boolean productoIgual = this.codPro == ((Producto) obj).getCodPro();
-			boolean ventaIgual = this.codigoVenta == ((Carro) obj).getCodigoVenta();
-			return productoIgual && ventaIgual;
+	public void setCantidadProductos(int CantidadProductos) {
+		if(CantidadProductos < 0) {
+			System.out.println("La cantidad no puede ser negativa.");
 		}
-		return super.equals(obj);
+		else {
+			this.CantidadProductos = this.arregloCarro.getCount();
+		}
 	}
 	
-	
-	////////////////////////////////////////////////////////
-	public void agregarItem (Producto ventita) {
-		int codiPro = ventita.getCodPro();
-		if (this.prodCarro(codiPro)){
-			this.agregarCantidad(cantidad);;
-			this.agregarDescuento(descuento);
-		} else{
-			ventita.setCodPro(codPro);
-			arregloCarro.add(ventita);
+	public void CalcularMontoTotal() {
+		if(!this.arregloCarro.isEmptyList()) {
+			Node<Producto>  aux = this.arregloCarro.getFirst();
+			if(this.arregloCarro.getFirst() != null && aux.getNext() == null) {
+				this.MontoTotal = (double) (aux.getData().getCantPro() * aux.getData().getPrecio());
+			}
+			else {
+				while(aux.getNext() != null) {
+					this.MontoTotal += aux.getData().getPrecio() * aux.getData().getCantPro();
+					aux = aux.getNext();
+				}
+				this.MontoTotal += aux.getData().getPrecio() * aux.getData().getCantPro();
+			}
 		}
+		else {
+			System.out.println("El carro esta aun esta vacio");
+		}
+	}
+	
+	public void disminuirStockC(Web x) {
 		
-	}
-	private int getIndex(int codPro) {
-		Producto ventita = new Producto();
-		ventita.setCodPro(codPro);
-		
-		return arregloCarro.indexOf(ventita);
-	}
-	public Producto getProducto (int codPro) {
-		Producto ventita = null;
-		int index = getIndex(codPro);
-		if (index != noExisteElem) {
-			ventita = arregloCarro.get(index);
-		}
-		return ventita;
-	}
-	
-	public ArrayList <Producto> getCarro(){
-		return arregloCarro;
-	}
-	public void vaciarCarro () { /*vaciar el carro una vez realizada la compra*/
-		arregloCarro.clear();
-	}
-	
-	public void borrarItem (int codPro) { //eliminar un elemento del carrito
-		int index = getIndex (codPro);
-		if (index != noExisteElem) {
-			arregloCarro.remove(index);
-		}
-	}
-	
-	public boolean prodCarro (int codPro) { //verifica que haya elementos en el carro
-		return getIndex (codPro) != noExisteElem;
-	}
-	
-	//////////////////////////////////////////////////////////////////////////
-
+		for(int i=0;i<this.arregloCarro.getCount();i++ ) {
 			
+		}
+	}
+	public void destruirCarrito() {
+		this.arregloCarro.destroyList();
+	}
+	public String toString() {
+		return "\n Codigo venta "+this.codigoVenta
+				+ "\n =====Productos====="
+				+ this.arregloCarro.toString();
+	}
+	
+	public void AgregarProductos(Web x) {
+		Scanner entrada = new Scanner(System.in);
+		Producto aux,aux2;
+		int opcion,cant,stock;
+		System.out.println("Ingrese la categoria de productos de la cual desea comprar: ");
+		try {
+			CategoriaProducto p = x.getProductos();
+			if(p.getProductos().getCount() == 0) {
+				System.out.println("Categoria sin productos");
+			}
+			else {
+				System.out.println("Escoja un producto");
+				p.listarProductos();
+			
+					System.out.println("\nInserte el ID del producto que desea agregar:");
+					opcion = entrada.nextInt();
+					System.out.println("\nInserte la cantidad");
+					cant = entrada.nextInt();
+					if(opcion > -1 && opcion < p.getProductos().getCount()) {
+						aux = (Producto) p.getProductos().search(opcion);
+						aux2 = aux.disminuirStock(cant);
+						if(aux2 == null) {
+							System.out.println("\tProducto no agregado");
+						}
+						else {
+							this.arregloCarro.insertNode(aux2);
+						}
+					}
+					else {
+						System.out.println("Error: Algo salio mal");
+					}
+				
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}
+	public void eliminarCarroProducto(int i, Web x) throws ItemNoFound {
+		System.out.println("\tIngrese la categoria del cual desea eliminar: \n"); 
+		CategoriaProducto p = x.getProductos();
+		Producto aux;
+		if(this.arregloCarro.isEmptyList()) {
+			System.out.println("\tEsta categoria esta aun vacia, agregue productos."); 
+		} 
+		else {
+			if(this.arregloCarro.getCount() < i) { 
+				System.out.println("\tIndex no valido"); 
+			}
+			aux=(Producto) p.getProductos().search(i);
+			Producto pr = this.arregloCarro.search(i); 
+			p.agregarStockProducto(i, pr.getCantPro());
+			pr.getCantPro();
+			this.arregloCarro.remove(pr); 
+		}
+	}
 }

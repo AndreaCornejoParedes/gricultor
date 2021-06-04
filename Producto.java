@@ -1,4 +1,8 @@
 import java.util.Scanner;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 public class Producto implements Comparable<Producto>{
 	private int codPro;
 	private String nomPro;
@@ -6,10 +10,10 @@ public class Producto implements Comparable<Producto>{
 	private int cantPro;
 	private float precio;
 	private String ubiPro;
-	private int datePro;
+	private Date datePro;
 	private String variedad;
 	
-	public Producto() {
+	public Producto() throws ParseException {
 		super();
 	
 		System.out.println("\t----MENÚ PRODUCTO----\nINGRESE LOS SIGUIENTES DATOS");
@@ -21,13 +25,15 @@ public class Producto implements Comparable<Producto>{
 		Scanner inputfloat=new Scanner(System.in);
 		System.out.println("PRECIO: "); float prec=inputfloat.nextFloat();
 		System.out.println("UBICACIÓN: "); String ubi=inputstring.nextLine();
-		System.out.println("FECHA COSECHA: ");int date=inputint.nextInt();
+		System.out.println("FECHA COSECHA: (DD/MM/YYYY)"); String date=inputstring.nextLine();
+		DateFormat format = new SimpleDateFormat("DD/MM/YYYY");
+		Date dateP = format.parse(date);
 		System.out.println("VARIEDAD: "); String var=inputstring.nextLine();
 		this.nomPro=nom; this.desPro=des; this.cantPro=can;
-		this.precio=prec; this.ubiPro=ubi; this.datePro=date; this.variedad=var;
+		this.precio=prec; this.ubiPro=ubi; this.datePro=dateP; this.variedad=var;
 	}
 	public Producto(int codPro, String nomPro, String desPro, int cantPro, 
-			float precio, String ubiPro, int datePro, String variedad) {
+			float precio, String ubiPro, Date datePro, String variedad) {
 		super();
 		this.codPro = codPro;
 		this.nomPro = nomPro;
@@ -74,10 +80,10 @@ public class Producto implements Comparable<Producto>{
 	public void setUbiPro(String ubiPro) {
 		this.ubiPro = ubiPro;
 	}
-	public int getDatePro() {
+	public Date getDatePro() {
 		return datePro;
 	}
-	public void setDatePro(int datePro) {
+	public void setDatePro(Date datePro) {
 		this.datePro = datePro;
 	}
 	public String getVariedad() {
@@ -86,14 +92,56 @@ public class Producto implements Comparable<Producto>{
 	public void setVariedad(String variedad) {
 		this.variedad = variedad;
 	}
+	public void aumentarStock(int x) {
+		this.cantPro += x;
+	}
+	public Producto disminuirStock(int x) {
+		Producto p;
+		int valor;
+		if(this.cantPro == 0) {
+			System.out.println("\tEl stock de este producto actualmente es 0");
+			return null;
+		}else if(this.cantPro < x) {
+			System.out.println("\tLa cantidad requerida supera el stock por" + (x - this.cantPro));
+			System.out.println("\tSe agregara toda la existencia" + (this.cantPro));
+			p = new Producto(this.getCodPro(),this.getNomPro(),this.getDesPro(),this.cantPro,this.getPrecio()
+					,this.getUbiPro(),this.datePro,this.variedad);
+			
+			//valor = this.cantPro;
+			this.cantPro = 0;
+			return p;
+		}else {
+			p = new Producto(this.getCodPro(),this.getNomPro(),this.getDesPro(),x,this.getPrecio()
+					,this.getUbiPro(),this.datePro,this.variedad);
+			
+			this.cantPro -= x;
+			return p;
+		}
+	}
 	
+	public void disminuirStockProducto(int x) {
+		/*int valor;
+		if(this.cantPro == 0) {
+			System.out.println("\tEl stock de este producto actualmente es 0");
+			return 0;
+		}else if(this.cantPro < x) {
+			System.out.println("\tLa cantidad requerida supera el stock por" + (x - this.cantPro));
+			valor = this.cantPro;
+			this.cantPro = 0;
+			return valor;
+		}else {
+			this.cantPro -= x;
+			return x;
+		}*/
+		this.cantPro -= x;
+	}
 	
 	@Override
 	public String toString() {
 		return 	  "\n"
-				+ "Producto: "+this.getNomPro()+"\n"
-				+ "Cantidad: "+this.getCantPro()+"\n"
-				+ "Precio Unitario: "+this.getPrecio()+"\n";
+				+ "\tProducto: "+this.getNomPro()+"\n"
+				+ "\tCantidad: "+this.getCantPro()+"\n"
+				+ "\tPrecio Unitario: "+this.getPrecio()+"\n";
 	}
 	public int compareTo(Producto o) {
 		if (this.codPro>o.codPro) return 1;
