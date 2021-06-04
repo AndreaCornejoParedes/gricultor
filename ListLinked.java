@@ -32,6 +32,17 @@ public class ListLinked <T> implements TDAList<T>{
 				return i;
 		return -1;
 	}
+	public T search(int x) {
+		Node<T> auxNode=this.first;
+		int count = 0;
+		for(int i=0;auxNode!=null;auxNode=auxNode.getNext(),i++) {
+			if(count == x) {
+				return auxNode.getData();
+			}
+			count++;
+		}
+		return null;
+	}
 
 	
 	public void insertLast(T x) {

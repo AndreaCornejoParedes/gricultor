@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class Usuario {
@@ -11,17 +12,17 @@ public class Usuario {
 	private String telefono;
 	
 	public Usuario() {
-		java.util.Scanner input = new java.util.Scanner(System.in);
-		System.out.println("¡Que gusto conocernos!");
-		System.out.println("Ingrese su nombre");
+		Scanner input = new Scanner(System.in);
+		System.out.println("\t==========================================");
+		System.out.print("\tIngrese su nombre: ");
 		this.nombre = input.next();
-		System.out.println("Ingrese su apellido");
+		System.out.print("\tIngrese su apellido: ");
 		this.apellidos = input.next();
-		System.out.println("Ingrese su email");
+		System.out.print("\tIngrese su e-mail: ");
 		this.email = input.next();
-		System.out.println("Ingrese la contraseña que va a utilizar");
+		System.out.print("\tIngrese la contraseña que va a utilizar: ");
 		this.contraseña = input.next();
-		System.out.println("Ingrese su celular");
+		System.out.print("\tIngrese su celular: ");
 		this.telefono = input.next();;
 	}
 	
@@ -37,7 +38,7 @@ public class Usuario {
 	}
 	
 	
-
+ 
 	public String getId() {
 		return id;
 	}
@@ -80,7 +81,7 @@ public class Usuario {
 	
 	/////////
 	public void calificar() {
-		java.util.Scanner input = new java.util.Scanner(System.in);
+		Scanner input = new Scanner(System.in);
 		System.out.println("Ingrese la calificacion del 0 al 5");
 		int calf=input.nextInt();
 		if (calf<=5&&calf>=0)
@@ -116,9 +117,18 @@ public class Usuario {
 	}
 	@Override
 	public String toString() {
-		return "¡Gusto en conocernos! El usuario es: " + nombre + " " + apellidos + ", Si deseas contactarlo: \n Su email es: " +
+		
+		return 	  "\t==========================================\n"
+				+ "\t                  USUARIO                 \n"
+				+ "\t==========================================\n"
+				+ "\tNombre: "+this.nombre + " "+this.apellidos+"\n"
+				+ "\te-mail: "+this.email + "\n"
+				+ "\tTelefono: "+this.telefono + "\n"
+				+ "\tAcualmente tiene una calificion de "+this.promcalif()+"\n";
+				
+				/*"¡Gusto en conocernos! El usuario es: " + nombre + " " + apellidos + ", Si deseas contactarlo: \n Su email es: " +
 	email +" y su telefono es : "+ telefono + 
-				" Por su ventas pasadas tiene una calificacion de : "+this.promcalif();
+				" Por su ventas pasadas tiene una calificacion de : "+this.promcalif();*/
 	}
 	
 	
