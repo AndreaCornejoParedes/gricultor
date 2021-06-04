@@ -6,8 +6,9 @@ public class SourceGricultor {
 		Usuario NewUser;
 		Web Gricultor = new Web();
 		while(true) {
-			NewUser = SourceGricultor.inicio(Gricultor);
-			SourceGricultor.menuopciones(NewUser,Gricultor);
+		NewUser = SourceGricultor.inicio(Gricultor);
+		System.out.println("impostor"+NewUser);
+		NewUser.menuopciones(NewUser,Gricultor);
 		}
 	}
 	 
@@ -69,6 +70,7 @@ public class SourceGricultor {
 		Gricultor.getUsuarios().insertLast(NewUser);
 		return NewUser;
 	}
+	/*
 	private static void menuopciones(Usuario newUser, Web gricultor) throws ItemNoFound {
 		
 		Scanner entrada = new Scanner(System.in);
@@ -179,5 +181,5 @@ public class SourceGricultor {
 				break;
 			}
 		}
-	}
+	}*/
 }

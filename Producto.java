@@ -6,7 +6,7 @@ public class Producto implements Comparable<Producto>{
 	private int cantPro;
 	private float precio;
 	private String ubiPro;
-	private int datePro;
+	private String datePro;
 	private String variedad;
 	
 	public Producto() {
@@ -21,13 +21,13 @@ public class Producto implements Comparable<Producto>{
 		Scanner inputfloat=new Scanner(System.in);
 		System.out.println("PRECIO: "); float prec=inputfloat.nextFloat();
 		System.out.println("UBICACIÓN: "); String ubi=inputstring.nextLine();
-		System.out.println("FECHA COSECHA: ");int date=inputint.nextInt();
+		System.out.println("FECHA COSECHA: ");String date=inputstring.nextLine();
 		System.out.println("VARIEDAD: "); String var=inputstring.nextLine();
 		this.nomPro=nom; this.desPro=des; this.cantPro=can;
 		this.precio=prec; this.ubiPro=ubi; this.datePro=date; this.variedad=var;
 	}
 	public Producto(int codPro, String nomPro, String desPro, int cantPro, 
-			float precio, String ubiPro, int datePro, String variedad) {
+			float precio, String ubiPro, String datePro, String variedad) {
 		super();
 		this.codPro = codPro;
 		this.nomPro = nomPro;
@@ -74,10 +74,10 @@ public class Producto implements Comparable<Producto>{
 	public void setUbiPro(String ubiPro) {
 		this.ubiPro = ubiPro;
 	}
-	public int getDatePro() {
+	public String getDatePro() {
 		return datePro;
 	}
-	public void setDatePro(int datePro) {
+	public void setDatePro(String datePro) {
 		this.datePro = datePro;
 	}
 	public String getVariedad() {

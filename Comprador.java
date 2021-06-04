@@ -85,6 +85,56 @@ public class Comprador extends Usuario {
 			//this.ConfirmarPedido();
 		}
 	}
+	public void menuopciones(Usuario Comprador, Web Gricultor) {
+		Scanner m = new Scanner(System.in);
+		CategoriaProducto x;
+		int indice,cantidad,aux;
+		boolean salir = false;
+		while(!salir) {
+			System.out.println();
+			System.out.println("\t==========================================");
+			System.out.println("\t                   MENU                   ");
+			System.out.println("\t==========================================");
+			
+			System.out.println("\tElija una opcion");
+			System.out.println("\t1 : Comprar");
+			System.out.println("\t2 : Ver carrito:");
+			System.out.println("\t3 : Confirmar compra y facturar:");
+			System.out.println("\t4 : Borrar productos del carrito");
+			System.out.println("\t5 : Salir");
+			System.out.print("\tOpc: ");
+			aux = m.nextInt();
+			
+			switch(aux) {
+			case 1:
+				((Comprador) Comprador).RealizarPedido(Gricultor);
+				//System.out.println(gricultor.getCategoriaProductos().toString());
+				//gricultor.modiProducto();
+				break;
+			case 2:
+				if(((Comprador) Comprador).getCarrito().isEmpty()) {
+					System.out.println("\t Carrito vacio");
+				}
+				else {
+					System.out.println(((Comprador) Comprador).getCarrito());
+				}
+				break;
+			case 3:
+				((Comprador) Comprador).ConfirmarPedido();
+				break;
+			case 4:
+				((Comprador) Comprador).getCarrito().destruirCarrito();
+				break;
+			case 5:
+				salir = true;
+				break;
+			default:
+				break;
+			}
+		}
 	
-	
+	}
 }
+	
+	
+

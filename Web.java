@@ -1,5 +1,8 @@
 import java.util.LinkedList;
 import java.util.Scanner;
+
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -40,8 +43,10 @@ public class Web {
 		CategoriaProductos.insert(this.CatTuberculo );
 	}
 	
+	@SuppressWarnings("resource")
 	public Usuario validarUsuario() throws NumberFormatException, IOException, ItemDuplicated  {
 		boolean state=false;
+
 		if(this.Usuarios.isEmptyList()) {
 			System.out.println();
 			System.out.println("\t================== ERROR ==================");
@@ -50,17 +55,21 @@ public class Web {
 			//SourceGricultor.inicio(this);
 			return null;
 		}
-			while(state==false) {
+			if(state==false) {
 				java.util.Scanner input = new java.util.Scanner(System.in);
 				System.out.println("¡Que gusto volvernos a ver!");
 				System.out.println("Ingrese su id");
 				String id = input.next();
 				System.out.println("Ingrese su contraseña");
 				String contraseña = input.next();
-		         String posicion = Files.readAllLines(Paths.get("F:\\LABORATORIOAED\\archivo.txt")).get(Integer.valueOf(id));
+		         String posicion = Files.readAllLines(Paths.get("E:\\LABORATORIOAED\\archivo.txt")).get(Integer.valueOf(id));
 	     
-		         Usuario auxNode = new Usuario(id,contraseña);
-		         if(posicion.equals(contraseña)) {        		 
+		         
+		         if(posicion.equals(contraseña)) {  
+		        	 Usuario auxNode= new Usuario(id);
+		        	 int posi=this.Usuarios.search(auxNode);
+		        	 auxNode = this.Usuarios.search(posi);
+		        	 System.out.println("entra ctv"+auxNode);
 	        		 System.out.println(" USUARIO VALIDO, BIENVENIDO");
 	        		 state=true;
 	        		 return auxNode;
@@ -72,14 +81,14 @@ public class Web {
 	}
 	public int añadirUsuario(Usuario User) throws FileNotFoundException  {
 		int cont=0;
-		archivo = new File ("F:\\LABORATORIOAED\\archivo.txt");
+		archivo = new File ("E:\\LABORATORIOAED\\archivo.txt");
 		fr = new FileReader (archivo);
         br = new BufferedReader(fr);
 	    FileWriter fichero = null;
         PrintWriter pw = null;
         try
         {	
-            fichero = new FileWriter("F:\\LABORATORIOAED\\archivo.txt",true);
+            fichero = new FileWriter("E:\\LABORATORIOAED\\archivo.txt",true);
             pw = new PrintWriter(fichero);
             String linea;
             while((linea=br.readLine())!=null) {

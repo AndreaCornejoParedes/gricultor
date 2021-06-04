@@ -26,10 +26,8 @@ public class Usuario {
 		this.telefono = input.next();;
 	}
 	
-	public Usuario(String id, String contraseña) {
-		super();
+	public Usuario(String id) {
 		this.id = id;
-		this.contraseña = contraseña;
 	}
 	public Usuario(int x) {
 		super();
@@ -111,7 +109,7 @@ public class Usuario {
 		if (o instanceof Usuario) {
 			Usuario p = (Usuario) o;
 			
-			return (this.getNombre().equals(p.getNombre()))&&(this.getId()==(p.getId()));
+			return (this.getId().equals(p.getId()));
 		}
 		return false;
 	}
@@ -130,6 +128,13 @@ public class Usuario {
 	email +" y su telefono es : "+ telefono + 
 				" Por su ventas pasadas tiene una calificacion de : "+this.promcalif();*/
 	}
+
+	public void menuopciones(Usuario newUser, Web gricultor) throws ItemNoFound {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	
 	
 }
