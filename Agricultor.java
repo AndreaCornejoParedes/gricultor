@@ -12,11 +12,9 @@ public class Agricultor extends Usuario{
 	public Agricultor() {
 		super();
 	}
-	public Agricultor(int x) {
-		super(x);
-	}
 	
-	public void menuopciones(Usuario Agricultor, Web Gricultor) throws ItemNoFound, ParseException {
+	public void menuopciones(Usuario Agricultor, Web Gricultor) 
+{
 		
 		Scanner entrada = new Scanner(System.in);
 		boolean salir = false;

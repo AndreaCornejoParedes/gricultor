@@ -121,7 +121,6 @@ public class Producto implements Comparable<Producto>{
 			System.out.println("\tSe agregara toda la existencia" + (this.cantPro));
 			p = new Producto(this.getCodPro(),this.getNomPro(),this.getDesPro(),this.cantPro,this.getPrecio()
 					,this.getUbiPro(),this.datePro,this.variedad);
-			//valor = this.cantPro;
 			this.cantPro = 0;
 			return p;
 		}else {

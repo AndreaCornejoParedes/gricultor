@@ -7,8 +7,7 @@ public class Usuario {
 	private String nombre;
 	private String apellidos;
 	private String email;
-	private String contraseña;
-	private ArrayList<Integer> calificacion=new ArrayList<Integer>();
+	private String password;
 	private String telefono;
 	public Usuario(String nombre, String apellidos) {
 		this.nombre=nombre;
@@ -24,8 +23,8 @@ public class Usuario {
 		this.apellidos = input.next();
 		System.out.print("\t* Ingrese su e-mail: ");
 		this.email = input.next();
-		System.out.print("\t* Ingrese la contraseña que va a utilizar: ");
-		this.contraseña = input.next();
+		System.out.print("\t* Ingrese la password que va a utilizar: ");
+		this.password = input.next();
 		System.out.print("\t* Ingrese su celular: ");
 		this.telefono = input.next();
 	}
@@ -33,13 +32,6 @@ public class Usuario {
 	public Usuario(String id) {
 		this.id = id;
 	}
-	public Usuario(int x) {
-		super();
-		this.id =" ";
-		this.contraseña = " ";
-	}
-	
-	
  
 	public String getId() {
 		return id;
@@ -65,11 +57,11 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getContraseña() {
-		return contraseña;
+	public String getpassword() {
+		return password;
 	}
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setpassword(String password) {
+		this.password = password;
 	}
 	public String getTelefono() {
 		return telefono;
@@ -77,14 +69,7 @@ public class Usuario {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	public ArrayList<Integer> getCalificacion() {
-		return calificacion;
-	}
 	
-
-	public void setCalificacion(ArrayList<Integer> calificacion) {
-		this.calificacion = calificacion;
-	}
 	public boolean equals (Object o) {
 		if (o instanceof Usuario) {
 			Usuario p = (Usuario) o;
@@ -102,9 +87,9 @@ public class Usuario {
 				+ "\te-mail: \t"+this.email + "\n"
 				+ "\tTelefono: \t"+this.telefono + "\n";
 	}
-
-	public void menuopciones(Usuario newUser, Web gricultor) throws ItemNoFound, ParseException {
+	public void menuopciones(Usuario newUser, Web gricultor)throws ItemNoFound, ParseException  {
 		// TODO Auto-generated method stub
 		
 	}
+	
 }

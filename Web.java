@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.text.ParseException;
 
 public class Web {
+	/* Atributos */
 	private ListLinked<Usuario> Usuarios;
 	private BSTree<CategoriaProducto> CategoriaProductos;
 	File archivo = null;
@@ -15,7 +16,7 @@ public class Web {
     private CategoriaProducto CatTallo= new CategoriaProducto(2, "Tallo");
     private CategoriaProducto CatHortalizas= new CategoriaProducto(3, "Hortalizas");
     private CategoriaProducto CatTuberculo= new CategoriaProducto(4, "Tuberculo");
-	
+    /* ------ */
 	public ListLinked<Usuario> getUsuarios() {
 		return Usuarios;
 	}
@@ -66,6 +67,7 @@ public class Web {
 		        	 Usuario auxNode= new Usuario(id);
 		        	 int posi=this.Usuarios.search(auxNode);
 		        	 auxNode = this.Usuarios.search(posi);
+		        	 System.out.println("\tEntrando "+auxNode);
 		        	 System.out.println("\t********USUARIO VALIDO, BIENVENIDO********");
 	        		 state=true;
 	        		 return auxNode;
@@ -75,27 +77,22 @@ public class Web {
 			return null;
 	}
 	
-	public int añadirUsuario(Usuario User) throws IOException  {
+	public int agregarUsuario(Usuario User) throws FileNotFoundException  {
 		int cont=0;
-		String ruta = "E:\\LABORATORIOAED\\archivo.txt";
-		File archivo = new File (ruta);
-		 if (!archivo.exists()) {
-			 archivo.createNewFile();
-         }
-
+		archivo = new File ("E:\\LABORATORIOAED\\archivo.txt");
 		fr = new FileReader (archivo);
         br = new BufferedReader(fr);
 	    FileWriter fichero = null;
         PrintWriter pw = null;
         try
         {	
-            fichero = new FileWriter(archivo);
+            fichero = new FileWriter("E:\\LABORATORIOAED\\archivo.txt",true);
             pw = new PrintWriter(fichero);
             String linea;
             while((linea=br.readLine())!=null) {
             	cont++;
             }
-            pw.println(User.getContraseña());
+            pw.println(User.getpassword());
             User.setId(String.valueOf(cont)); 
             return cont;
 

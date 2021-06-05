@@ -9,7 +9,6 @@ public class Comprobante {
 	private OrderListLinked<Producto> productos;
 	
 	public Comprobante(OrderListLinked<Producto> listaProductos) {
-		//this.productos =  new OrderListLinked<Producto>();
 		this.productos = listaProductos;
 		this.numeroComprobante= "0";
 		this.fechaEmision 	= null;
@@ -76,9 +75,7 @@ public class Comprobante {
 			System.out.println("\tSin productos no se puede crear un comprobante");
 		}
 	}
-	public  void EliminarComprobante() {
-		
-	}
+	
 	
 	public String toString() {
 		return  "\n\t==========================================" +

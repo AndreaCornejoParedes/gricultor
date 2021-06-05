@@ -96,7 +96,7 @@ public class CategoriaProducto implements Comparable<CategoriaProducto>{
 		}
 		return (ListLinked<Integer>) list;
 	}
-	public ListArray<OrderListLinked<Producto>> clasififcar(Producto x) {
+	public ListArray<OrderListLinked<Producto>> clasificar(Producto x) {
 	ListArray<OrderListLinked<Producto>> clasificacion = new ListArray<OrderListLinked<Producto>>(2);
 	OrderListLinked<Producto> menores = new OrderListLinked<Producto>();
 	OrderListLinked<Producto> mayores = new OrderListLinked<Producto>();

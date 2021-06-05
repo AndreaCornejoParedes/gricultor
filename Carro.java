@@ -60,12 +60,6 @@ public class Carro  {
 		}
 	}
 	
-	public void disminuirStockC(Web x) {
-		
-		for(int i=0;i<this.arregloCarro.getCount();i++ ) {
-			
-		}
-	}
 	public void destruirCarrito() {
 		this.arregloCarro.destroyList();
 	}

@@ -65,7 +65,7 @@ public class SourceGricultor {
 			System.out.print("\tIngrese Aceptar para confirmar: ");
 			aux1=entrada.next();
 		}
-		aux = Gricultor.añadirUsuario(NewUser);
+		aux = Gricultor.agregarUsuario(NewUser);
 		System.out.println("\tSu ID generado es..."+aux);
 		Gricultor.getUsuarios().insertLast(NewUser);
 		return NewUser;
