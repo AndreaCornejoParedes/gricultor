@@ -1,4 +1,5 @@
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -6,7 +7,7 @@ public class Agricultor extends Usuario{
 	LinkedList Productos;
 	public Agricultor(String nombre, String apellidos) {
 		super(nombre, apellidos);
-		// TODO Auto-generated constructor stub
+		
 	}
 	public Agricultor() {
 		super();
@@ -31,14 +32,15 @@ public class Agricultor extends Usuario{
 					System.out.println("\t 1 : Añadir producto a la venta");
 					System.out.println("\t 2 : Ver productos");
 					System.out.println("\t 3 : Borrar productos");
-					System.out.println("\t 4 : Aumentar Stock de productos");
+					System.out.println("\t 4 : Aumentar Sto"
+							+ "ck de productos");
 					System.out.println("\t 5 : Cerrar sesion");
 					System.out.print("\tOpc: ");
 					aux = entrada.nextInt();
 					switch(aux) {
 					case 1:
 						System.out.println("\t* Seleccione categoria donde desea agregar un nuevo producto: ");
-						Gricultor.modiProducto();
+						Gricultor.modiProducto(this);
 						break;
 					case 2:
 						System.out.println("\t* Seleccione categoria que desea listar:  ");
@@ -76,6 +78,7 @@ public class Agricultor extends Usuario{
 				break;
 			}
 		}
+
 }
 	
 

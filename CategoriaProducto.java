@@ -52,8 +52,8 @@ public class CategoriaProducto implements Comparable<CategoriaProducto>{
 		}
 	}
 	
-	public void agregarProducto() throws ParseException {
-		Producto auxProducto = new Producto();
+	public void agregarProducto(Agricultor vendedor) throws ParseException {
+		Producto auxProducto = new Producto(vendedor);
 		this.Productos.insertLast(auxProducto);
 	}	
 	public int getCodCat() {

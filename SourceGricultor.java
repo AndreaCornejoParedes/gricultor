@@ -8,7 +8,6 @@ public class SourceGricultor {
 		Web Gricultor = new Web();
 		while(true) {
 		NewUser = SourceGricultor.inicio(Gricultor);
-		System.out.println("\tNUEVO USUARIO: \n"+NewUser);
 		NewUser.menuopciones(NewUser,Gricultor);
 		}
 	}
@@ -16,7 +15,7 @@ public class SourceGricultor {
 	public static Usuario inicio(Web Gricultor) throws ItemDuplicated, NumberFormatException, IOException {
 		int opc;
 		Scanner input = new Scanner(System.in);
-		System.out.println("\n\t<<<<<<<<< BIENVENIDO A GRICULTOR >>>>>>>>>\n");
+		System.out.println("\n\t<<<<<<<<< BIENVENIDO A GRICULTOR >>>>>>>>>\n Por favor asegurese de que la direccion de archivo sea correcta");
 		System.out.println("\t==========================================");
 		System.out.println("\t                   LOGIN                  ");
 		System.out.println("\t==========================================");

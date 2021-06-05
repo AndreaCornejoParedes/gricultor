@@ -43,10 +43,13 @@ public class Comprador extends Usuario {
 				case 1:
 					c1 = new Boleta(this.carrito.getProductosCarrito());
 					c1.agregarComprobante();
+					System.out.println(c1);
 					break;
 				case 2:
 					c1 = new Factura(this.carrito.getProductosCarrito());
 					c1.agregarComprobante();
+					System.out.println(c1);
+
 					break;
 				default:
 					System.out.println("\tOpcion no valida...");
@@ -116,6 +119,7 @@ public class Comprador extends Usuario {
 				break;
 			case 3:
 				((Comprador) Comprador).ConfirmarPedido();
+				
 				break;
 			case 4:
 				System.out.println(((Comprador) Comprador).getCarrito());

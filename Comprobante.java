@@ -68,7 +68,10 @@ public class Comprobante {
 			}
 			this.fechaEmision = new Date();
 			this.numeroComprobante = Integer.toString((int)Math.random()*10000);
+			
+			
 		}
+		
 		else {
 			System.out.println("\tSin productos no se puede crear un comprobante");
 		}

@@ -10,7 +10,11 @@ public class Usuario {
 	private String contraseña;
 	private ArrayList<Integer> calificacion=new ArrayList<Integer>();
 	private String telefono;
-	
+	public Usuario(String nombre, String apellidos) {
+		this.nombre=nombre;
+		this.apellidos=apellidos;
+		
+	}	
 	public Usuario() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("\t==========================================");
@@ -77,32 +81,9 @@ public class Usuario {
 		return calificacion;
 	}
 	
-	public void calificar() {
-		Scanner input = new Scanner(System.in);
-		System.out.print("\t* Ingrese la calificacion del 0 al 5: ");
-		int calf=input.nextInt();
-		if (calf<=5&&calf>=0)
-			this.calificacion.add(calf);
-		else {						
-			this.calificar();
-		}
-	}
-	
+
 	public void setCalificacion(ArrayList<Integer> calificacion) {
 		this.calificacion = calificacion;
-	}
-	public int promcalif() {
-		int sumatoria=0;
-		int i=0;
-		while(i<this.calificacion.size()) {
-			sumatoria+=this.calificacion.get(i);
-			i++;
-		}
-		if(calificacion.size()>0) {
-			return sumatoria/i;}
-		else {
-			return 0;
-		}
 	}
 	public boolean equals (Object o) {
 		if (o instanceof Usuario) {
@@ -119,8 +100,7 @@ public class Usuario {
 				+ "\t==========================================\n"
 				+ "\tNombre: \t"+this.nombre + " "+this.apellidos+"\n"
 				+ "\te-mail: \t"+this.email + "\n"
-				+ "\tTelefono: \t"+this.telefono + "\n"
-				+ "\tAcualmente tiene una calificacion de "+this.promcalif()+"\n";
+				+ "\tTelefono: \t"+this.telefono + "\n";
 	}
 
 	public void menuopciones(Usuario newUser, Web gricultor) throws ItemNoFound, ParseException {

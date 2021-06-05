@@ -60,13 +60,12 @@ public class Web {
 				String id = input.next();
 				System.out.print("\t* Ingrese su contraseña: ");
 				String contraseña = input.next();
-		        String posicion = Files.readAllLines(Paths.get("C:\\Users\\Admin\\archivo.txt")).get(Integer.valueOf(id));
+		        String posicion = Files.readAllLines(Paths.get("E:\\LABORATORIOAED\\archivo.txt")).get(Integer.valueOf(id));
 		        
 		         if(posicion.equals(contraseña)) {  
 		        	 Usuario auxNode= new Usuario(id);
 		        	 int posi=this.Usuarios.search(auxNode);
 		        	 auxNode = this.Usuarios.search(posi);
-		        	 System.out.println("\tEntrando "+auxNode);
 		        	 System.out.println("\t********USUARIO VALIDO, BIENVENIDO********");
 	        		 state=true;
 	        		 return auxNode;
@@ -76,16 +75,21 @@ public class Web {
 			return null;
 	}
 	
-	public int añadirUsuario(Usuario User) throws FileNotFoundException  {
+	public int añadirUsuario(Usuario User) throws IOException  {
 		int cont=0;
-		archivo = new File ("C:\\Users\\Admin\\archivo.txt");
+		String ruta = "E:\\LABORATORIOAED\\archivo.txt";
+		File archivo = new File (ruta);
+		 if (!archivo.exists()) {
+			 archivo.createNewFile();
+         }
+
 		fr = new FileReader (archivo);
         br = new BufferedReader(fr);
 	    FileWriter fichero = null;
         PrintWriter pw = null;
         try
         {	
-            fichero = new FileWriter("C:\\Users\\Admin\\archivo.txt",true);
+            fichero = new FileWriter(archivo);
             pw = new PrintWriter(fichero);
             String linea;
             while((linea=br.readLine())!=null) {
@@ -108,47 +112,29 @@ public class Web {
         }
 		return 0;
 	}
-	/*public void getProductosId(int i) throws ItemNoFound{
-			switch(i) {
-			case 1:
-				this.CategoriaProductos.search(this.CatCereales);
-				break;
-			case 2:
-				this.CategoriaProductos.search(this.CatTallo);
-				break;
-			case 3:
-				this.CategoriaProductos.search(this.CatHortalizas);
-				break;
-			case 4:
-				this.CategoriaProductos.search(this.CatTuberculo);
-				break;
-			default:
-				System.out.println("\tOpción inválida...");
-				break;
-			}
-		
-	}*/
+	
 	@SuppressWarnings("unchecked")
-	public void modiProducto() throws ItemNoFound, ParseException{
+	public void modiProducto(Agricultor vendedor) throws ItemNoFound, ParseException{
 		int opc=0;
+		int cont=0;
 		boolean seguir=true;
 		while (seguir) {
 			Scanner sc=new Scanner(System.in);
-			System.out.println("\n\t  1.Cereales\n\t  2.Tallos\n\t  3.Hortalizas\n\t  4.Tubérculos\n\t  5.Salir\n");
-			System.out.print("\t* Seleccione la categoría: ");
+			System.out.println("\n\t  1.Cereales\n\t  2.Tallos\n\t  3.Hortalizas\n\t  4.Tubérculos\n\t  5.Dejar de añadir\n");
+			System.out.print("\t* Seleccione la categoria o respuesta: ");
 			opc=sc.nextInt();
 			switch(opc) {
 			case 1:
-				this.CategoriaProductos.search(this.CatCereales).agregarProducto();
+				this.CategoriaProductos.search(this.CatCereales).agregarProducto(vendedor);
 				break;
 			case 2:
-				this.CategoriaProductos.search(this.CatTallo).agregarProducto();
+				this.CategoriaProductos.search(this.CatTallo).agregarProducto(vendedor);
 				break;
 			case 3:
-				this.CategoriaProductos.search(this.CatHortalizas).agregarProducto();
+				this.CategoriaProductos.search(this.CatHortalizas).agregarProducto(vendedor);
 				break;
 			case 4:
-				this.CategoriaProductos.search(this.CatTuberculo).agregarProducto();
+				this.CategoriaProductos.search(this.CatTuberculo).agregarProducto(vendedor);
 				break;
 			case 5:
 				seguir=false;
