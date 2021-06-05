@@ -11,19 +11,17 @@ public class CategoriaProducto implements Comparable<CategoriaProducto>{
 		this.nomCat=nomCat;
 		this.Productos = new ListLinked();
 	}
-	
 	public CategoriaProducto() {
 		super();
 	}
 	public void listarProductos() {
-		
 		System.out.println("\t==========================================");
-		System.out.println("\t                Productos	                ");
+		System.out.println("\t                PRODUCTOS                ");
 		System.out.println("\t==========================================");
 		System.out.println("\tMostrando productos para la categoria: "+this.nomCat);
 		System.out.println("\tCodigo: "+this.codCat);
 		if(this.Productos.isEmptyList()) {
-			System.out.print("\tAun no existen productos en esta categoria.....");
+			System.out.println("\tAun no existen productos en esta categoria...");
 		}
 		else{
 			System.out.println(this.Productos);
@@ -31,31 +29,28 @@ public class CategoriaProducto implements Comparable<CategoriaProducto>{
 	}
 	public void agregarStockProducto(int i,int cant) {
 		if(this.Productos.isEmptyList()) {
-			System.out.println("\t Error: Esta categoria esta aun vacia, agrege productos.");
+			System.out.println("\tERROR: Esta categoria esta aun vacia, agrege productos.");
 		}
 		else {
 			if(this.Productos.getCount() < i) {
-				System.out.println("\tIndex no valido");
+				System.out.println("\t-----------Index no valido----------"); 
 			}
 			Producto x = this.Productos.search(i);
 			x.aumentarStock(cant);
 		}
 	}
-	
 	public void eliminarProducto(int i) {
 		if(this.Productos.isEmptyList()) {
 			System.out.println("\tEsta categoria esta aun vacia, agrege productos.");
 		}
 		else {
 			if(this.Productos.getCount() < i) {
-				System.out.println("\tIndex no valido");
+				System.out.println("\t-----------Index no valido----------"); 
 			}
 			Producto x = this.Productos.search(i);
 			this.Productos.remove(x);
 		}
 	}
-	
-	
 	
 	public void agregarProducto() throws ParseException {
 		Producto auxProducto = new Producto();
@@ -76,12 +71,11 @@ public class CategoriaProducto implements Comparable<CategoriaProducto>{
 	public void setNomCat(String nomCat) {
 		this.nomCat = nomCat;
 	}
-	
 
 	public ListLinked getProductos() {
 		return Productos;
 	}
-
+	
 	public void setProductos(ListLinked productos) {
 		Productos = productos;
 	}
@@ -135,9 +129,11 @@ public class CategoriaProducto implements Comparable<CategoriaProducto>{
 
 	@Override
 	public String toString() {
-		return "\nCódigo: " + this.codCat + 
-				"\nNombre: " + this.nomCat + 
-				"\nProductos: " + this.Productos;
+		return "\t=========================================="+
+				"\n\t                CATEGORIA                "+
+				"\n\t=========================================="+
+				"\n\tCódigo: \t" + this.codCat + 
+				"\n\tNombre: \t" + this.nomCat +
+				"\n\tProductos: \t" + this.Productos;
 	}
-	
 }

@@ -55,38 +55,37 @@ public class Web {
 		}
 			if(state==false) {
 				java.util.Scanner input = new java.util.Scanner(System.in);
-				System.out.println("¡Que gusto volvernos a ver!");
-				System.out.println("Ingrese su id");
+				System.out.println("\t\t *** ¡Que gusto volvernos a ver! ***");
+				System.out.print("\t* Ingrese su id: ");
 				String id = input.next();
-				System.out.println("Ingrese su contraseña");
+				System.out.print("\t* Ingrese su contraseña: ");
 				String contraseña = input.next();
-		         String posicion = Files.readAllLines(Paths.get("C:\\Users\\HP\\Desktop\\archivo.txt")).get(Integer.valueOf(id));
-	     
-		         
+		        String posicion = Files.readAllLines(Paths.get("C:\\Users\\Admin\\archivo.txt")).get(Integer.valueOf(id));
+		        
 		         if(posicion.equals(contraseña)) {  
 		        	 Usuario auxNode= new Usuario(id);
 		        	 int posi=this.Usuarios.search(auxNode);
 		        	 auxNode = this.Usuarios.search(posi);
-		        	 System.out.println("entra ctv"+auxNode);
-	        		 System.out.println(" USUARIO VALIDO, BIENVENIDO");
+		        	 System.out.println("\tEntrando "+auxNode);
+		        	 System.out.println("\t********USUARIO VALIDO, BIENVENIDO********");
 	        		 state=true;
 	        		 return auxNode;
 	        	 }
 			}
-			 System.out.println("USUARIO INVÁLIDO");
-		        return null;
-			
+			System.out.println(" ------ USUARIO INVÁLIDO ------");
+			return null;
 	}
+	
 	public int añadirUsuario(Usuario User) throws FileNotFoundException  {
 		int cont=0;
-		archivo = new File ("C:\\Users\\HP\\Desktop\\archivo.txt");
+		archivo = new File ("C:\\Users\\Admin\\archivo.txt");
 		fr = new FileReader (archivo);
         br = new BufferedReader(fr);
 	    FileWriter fichero = null;
         PrintWriter pw = null;
         try
         {	
-            fichero = new FileWriter("C:\\Users\\HP\\Desktop\\archivo.txt",true);
+            fichero = new FileWriter("C:\\Users\\Admin\\archivo.txt",true);
             pw = new PrintWriter(fichero);
             String linea;
             while((linea=br.readLine())!=null) {
@@ -135,8 +134,8 @@ public class Web {
 		boolean seguir=true;
 		while (seguir) {
 			Scanner sc=new Scanner(System.in);
-			System.out.println("\n\t1.Cereales\n\t2.Tallos\n\t3.Hortalizas\n\t4.Tubérculos\n\t5.Salir\n");
-			System.out.print("\tSeleccione la categoría: ");
+			System.out.println("\n\t  1.Cereales\n\t  2.Tallos\n\t  3.Hortalizas\n\t  4.Tubérculos\n\t  5.Salir\n");
+			System.out.print("\t* Seleccione la categoría: ");
 			opc=sc.nextInt();
 			switch(opc) {
 			case 1:
@@ -155,7 +154,7 @@ public class Web {
 				seguir=false;
 				break;
 			default:
-				System.out.println("\tOpción inválida...");
+				System.out.println("\t--------Opcion invalida--------"); 
 			}
 		}
 	}
@@ -164,7 +163,8 @@ public class Web {
 		boolean seguir=true;
 		while (seguir) {
 			Scanner sc=new Scanner(System.in);
-			System.out.println("\n\t1.Cereales\n\t2.Tallos\n\t3.Hortalizas\n\t4.Tubérculos\n\t5.Salir\n\tSeleccione la categoría: ");
+			System.out.println("\n\t  1.Cereales\n\t  2.Tallos\n\t  3.Hortalizas\n\t  4.Tubérculos\n\t  5.Salir\n");
+			System.out.print("\t* Seleccione la categoría: ");
 			opc=sc.nextInt();
 			switch(opc) {
 			case 1:
@@ -179,7 +179,7 @@ public class Web {
 				seguir=false;
 				break;
 			default:
-				System.out.println("\tOpción inválida...");
+				System.out.println("\t--------Opcion invalida--------"); 
 			}
 		}
 		return null;

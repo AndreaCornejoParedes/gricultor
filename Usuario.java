@@ -2,7 +2,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class Usuario {
 	private String id;
 	private String nombre;
@@ -15,16 +14,16 @@ public class Usuario {
 	public Usuario() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("\t==========================================");
-		System.out.print("\tIngrese su nombre: ");
+		System.out.print("\t* Ingrese su nombre: ");
 		this.nombre = input.next();
-		System.out.print("\tIngrese su apellido: ");
+		System.out.print("\t* Ingrese su apellido: ");
 		this.apellidos = input.next();
-		System.out.print("\tIngrese su e-mail: ");
+		System.out.print("\t* Ingrese su e-mail: ");
 		this.email = input.next();
-		System.out.print("\tIngrese la contraseña que va a utilizar: ");
+		System.out.print("\t* Ingrese la contraseña que va a utilizar: ");
 		this.contraseña = input.next();
-		System.out.print("\tIngrese su celular: ");
-		this.telefono = input.next();;
+		System.out.print("\t* Ingrese su celular: ");
+		this.telefono = input.next();
 	}
 	
 	public Usuario(String id) {
@@ -78,10 +77,9 @@ public class Usuario {
 		return calificacion;
 	}
 	
-	/////////
 	public void calificar() {
 		Scanner input = new Scanner(System.in);
-		System.out.println("Ingrese la calificacion del 0 al 5");
+		System.out.print("\t* Ingrese la calificacion del 0 al 5: ");
 		int calf=input.nextInt();
 		if (calf<=5&&calf>=0)
 			this.calificacion.add(calf);
@@ -116,26 +114,17 @@ public class Usuario {
 	}
 	@Override
 	public String toString() {
-		
 		return 	  "\t==========================================\n"
 				+ "\t                  USUARIO                 \n"
 				+ "\t==========================================\n"
-				+ "\tNombre: "+this.nombre + " "+this.apellidos+"\n"
-				+ "\te-mail: "+this.email + "\n"
-				+ "\tTelefono: "+this.telefono + "\n"
-				+ "\tAcualmente tiene una calificion de "+this.promcalif()+"\n";
-				
-				/*"¡Gusto en conocernos! El usuario es: " + nombre + " " + apellidos + ", Si deseas contactarlo: \n Su email es: " +
-	email +" y su telefono es : "+ telefono + 
-				" Por su ventas pasadas tiene una calificacion de : "+this.promcalif();*/
+				+ "\tNombre: \t"+this.nombre + " "+this.apellidos+"\n"
+				+ "\te-mail: \t"+this.email + "\n"
+				+ "\tTelefono: \t"+this.telefono + "\n"
+				+ "\tAcualmente tiene una calificacion de "+this.promcalif()+"\n";
 	}
 
 	public void menuopciones(Usuario newUser, Web gricultor) throws ItemNoFound, ParseException {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-	
-	
 }

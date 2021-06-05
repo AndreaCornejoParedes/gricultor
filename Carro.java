@@ -34,7 +34,7 @@ public class Carro  {
 	
 	public void setCantidadProductos(int CantidadProductos) {
 		if(CantidadProductos < 0) {
-			System.out.println("La cantidad no puede ser negativa.");
+			System.out.println("\tLa cantidad no puede ser negativa.");
 		}
 		else {
 			this.CantidadProductos = this.arregloCarro.getCount();
@@ -56,7 +56,7 @@ public class Carro  {
 			}
 		}
 		else {
-			System.out.println("El carro esta aun esta vacio");
+			System.out.println("\t------------El carro esta vacio-----------");
 		}
 	}
 	
@@ -70,8 +70,11 @@ public class Carro  {
 		this.arregloCarro.destroyList();
 	}
 	public String toString() {
-		return "\n Codigo venta "+this.codigoVenta
-				+ "\n =====Productos====="
+		return "\t=========================================="+
+				"\n\t                  CARRITO                 "+
+				"\n\t=========================================="+
+				"\n\tCodigo venta: \t"+this.codigoVenta
+				+ "\n\t=====Productos====="
 				+ this.arregloCarro.toString();
 	}
 	
@@ -79,19 +82,19 @@ public class Carro  {
 		Scanner entrada = new Scanner(System.in);
 		Producto aux,aux2;
 		int opcion,cant,stock;
-		System.out.println("Ingrese la categoria de productos de la cual desea comprar: ");
+		System.out.println("\t* Ingrese la categoria de productos de la cual desea comprar: ");
 		try {
 			CategoriaProducto p = x.getProductos();
 			if(p.getProductos().getCount() == 0) {
-				System.out.println("Categoria sin productos");
+				System.out.println("\tCategoria sin productos");
 			}
 			else {
-				System.out.println("Escoja un producto");
+				System.out.println("\t* Escoja un producto: ");
 				p.listarProductos();
 			
-					System.out.println("\nInserte el ID del producto que desea agregar:");
+					System.out.println("\n\t* Inserte el ID del producto que desea agregar: ");
 					opcion = entrada.nextInt();
-					System.out.println("\nInserte la cantidad");
+					System.out.println("\n\t* Inserte la cantidad: ");
 					cant = entrada.nextInt();
 					if(opcion > -1 && opcion < p.getProductos().getCount()) {
 						aux = (Producto) p.getProductos().search(opcion);
@@ -104,7 +107,8 @@ public class Carro  {
 						}
 					}
 					else {
-						System.out.println("Error: Algo salio mal");
+						System.out.println("\t================== ERROR ==================");
+						System.out.println("\t               ALGO SALIO MAL              ");
 					}
 				
 			}
@@ -114,7 +118,7 @@ public class Carro  {
 		
 	}
 	public void eliminarCarroProducto(int i, Web x) throws ItemNoFound {
-		System.out.println("\tIngrese la categoria del cual desea eliminar: \n"); 
+		System.out.println("\t* Ingrese la categoria del cual desea eliminar: \n"); 
 		CategoriaProducto p = x.getProductos();
 		Producto aux;
 		if(this.arregloCarro.isEmptyList()) {
@@ -122,7 +126,7 @@ public class Carro  {
 		} 
 		else {
 			if(this.arregloCarro.getCount() < i) { 
-				System.out.println("\tIndex no valido"); 
+				System.out.println("\t--------Index no valido--------"); 
 			}
 			aux=(Producto) p.getProductos().search(i);
 			Producto pr = this.arregloCarro.search(i); 
