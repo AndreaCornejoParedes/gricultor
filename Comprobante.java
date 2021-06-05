@@ -70,7 +70,7 @@ public class Comprobante {
 			this.numeroComprobante = Integer.toString((int)Math.random()*10000);
 		}
 		else {
-			System.out.println("No hay productos para hacer el comprobante.");
+			System.out.println("\tSin productos no se puede crear un comprobante");
 		}
 	}
 	public  void EliminarComprobante() {
@@ -78,12 +78,16 @@ public class Comprobante {
 	}
 	
 	public String toString() {
-		return "===========================" +
-				"\nNro:	" + this.getNumeroComprobante()+
-				"\nFecha de emision: "+this.fechaEmision.toString()+
-				"\nTipo documento: "+this.getTipoDoc() + 
-				"\nMonto total: "+this.getMontoTotal() +
-				"\n=========== Productos ===========\n" + 
+		return  "\n\t==========================================" +
+				"\n\t                COMPROBANTE               " +
+				"\n\t==========================================" +
+				"\n\t - Nro: \t" + this.getNumeroComprobante()+
+				"\n\t - Fecha de emision: \t"+this.fechaEmision.toString()+
+				"\n\t - Tipo documento: \t"+this.getTipoDoc() + 
+				"\n\t - Monto total: \t"+this.getMontoTotal() +
+				"\n\t==========================================" +
+				"\n\t             Lista de Productos           " +
+				"\n\t==========================================" +
 				this.productos.toString();
 		
 	}
