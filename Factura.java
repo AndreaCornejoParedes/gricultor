@@ -14,16 +14,19 @@ public class Factura extends Comprobante{
 	@Override
 	public void agregarComprobante() {
 		super.agregarComprobante();
-		System.out.println("=========== Nueva "+this.getClass().getName()+" ===========");
+		System.out.println("\t==========================================");
+		System.out.println("\t    Nueva"+this.getClass().getName()+"    ");
+		System.out.println("\t==========================================");
 		Scanner in = new Scanner(System.in);
 		do {
-			System.out.println("Ingrese un RUC valido: ");
-			ruc = in.next();
+			System.out.print("\t* Ingrese un RUC valido: ");
+			ruc = in.nextLine();
 		}while(!validarRuc(ruc));
 		
-		System.out.println("Razon social: ");
+		System.out.println("\tRazon social: ");
 		this.razonSocial = in.next();
 		in.close();
+		System.out.println("\t==========================================");
 	}
 	private boolean validarRuc(String ruc) {
 		return ruc.matches("[0-9]{11}");
@@ -31,9 +34,10 @@ public class Factura extends Comprobante{
 	@Override
 	public String toString() {
 		return 	super.toString()+
-				"\nRUC: "+this.ruc+
-				"\nRazon Social: "+this.razonSocial;
-		
+				"\n\t=========================================="+
+				"\n\t          DETALLES DE LA FACTURA          "+
+				"\n\t=========================================="+
+				"\n\tRUC: \t"+this.ruc+
+				"\n\tRazon Social: \t"+this.razonSocial;
 	}
-	
 }

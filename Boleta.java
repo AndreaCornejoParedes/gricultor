@@ -14,16 +14,19 @@ public class Boleta extends Comprobante{
 		super.agregarComprobante();
 		Scanner in = new Scanner(System.in);
 		
-		System.out.println("\nIngrese el nombre: ");
+		System.out.println("\n\t* Ingrese el nombre: ");
 		this.nombre = in.next();
-		System.out.println("\nIngrese el numero del documento: ");
+		System.out.println("\n\t* Ingrese el numero del documento: ");
 		this.nroDoc = in.next();
 	}
 
 	public String toString() {
 		return 	super.toString()+
-				"\nNro documento: "+this.nroDoc+
-				"\nnombre: "+this.nombre;
+				"\n\t==========================================" +
+				"\n\t           DETALLES DE LA BOLETA          " +
+				"\n\t==========================================" +
+				"\n\tNro documento: \t"+this.nroDoc+
+				"\n\tNombre: \t"+this.nombre;
 		
 	}
 
