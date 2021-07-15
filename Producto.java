@@ -12,23 +12,38 @@ public class Producto implements Comparable<Producto>{
 	private String ubiPro;
 	private Date datePro;
 	private String variedad;
+	private Agricultor vendedor;
 	
-	public Producto() throws ParseException {
+	public Agricultor getVendedor() {
+		return vendedor;
+	}
+	public void setVendedor(Agricultor vendedor) {
+		this.vendedor = vendedor;
+	}
+	public Producto(Agricultor vendedor) throws ParseException {
 		super();
 	
-		System.out.println("\t----MENÚ PRODUCTO----\nINGRESE LOS SIGUIENTES DATOS");
+		System.out.println("\t==========================================");
+		System.out.println("\t             MENU DE PRODUCTOS            ");
+		System.out.println("\t==========================================");
+		System.out.println("\tIngrese los siguientes datos del producto: ");
 		Scanner inputstring=new Scanner(System.in);
-		System.out.println("NOMBRE: "); String nom=inputstring.nextLine();
-		System.out.println("DESCRIPCIÓN: "); String des=inputstring.nextLine();
+		System.out.print("\t* Nombre: "); String nom=inputstring.nextLine();
+		System.out.print("\t* Descripcion: "); String des=inputstring.nextLine();
 		Scanner inputint=new Scanner(System.in);
-		System.out.println("CANTIDAD: "); int can=inputint.nextInt();
+		System.out.print("\t* Cantidad (En hectareas): "); int can=inputint.nextInt();
 		Scanner inputfloat=new Scanner(System.in);
-		System.out.println("PRECIO: "); float prec=inputfloat.nextFloat();
-		System.out.println("UBICACIÓN: "); String ubi=inputstring.nextLine();
-		System.out.println("FECHA COSECHA: (DD/MM/YYYY)"); String date=inputstring.nextLine();
+		System.out.print("\t* Precio (En soles) : "); float prec=inputfloat.nextFloat();
+		System.out.print("\t* Ubicacion: "); String ubi=inputstring.nextLine();
+		System.out.print("\t* Fecha de Siembra (DD/MM/YYYY): "); String date=inputstring.nextLine();
 		DateFormat format = new SimpleDateFormat("DD/MM/YYYY");
 		Date dateP = format.parse(date);
-		System.out.println("VARIEDAD: "); String var=inputstring.nextLine();
+		System.out.print("\t* Variedad: "); String var=inputstring.nextLine();
+		System.out.println("  "); 
+		this.vendedor=vendedor;
+		System.out.println("\t\t\t PRODUCTO AÑADIDO  "); 
+		System.out.println("  "); 
+		System.out.println("\t==========================================");
 		this.nomPro=nom; this.desPro=des; this.cantPro=can;
 		this.precio=prec; this.ubiPro=ubi; this.datePro=dateP; this.variedad=var;
 	}
@@ -106,8 +121,6 @@ public class Producto implements Comparable<Producto>{
 			System.out.println("\tSe agregara toda la existencia" + (this.cantPro));
 			p = new Producto(this.getCodPro(),this.getNomPro(),this.getDesPro(),this.cantPro,this.getPrecio()
 					,this.getUbiPro(),this.datePro,this.variedad);
-			
-			//valor = this.cantPro;
 			this.cantPro = 0;
 			return p;
 		}else {
@@ -120,28 +133,18 @@ public class Producto implements Comparable<Producto>{
 	}
 	
 	public void disminuirStockProducto(int x) {
-		/*int valor;
-		if(this.cantPro == 0) {
-			System.out.println("\tEl stock de este producto actualmente es 0");
-			return 0;
-		}else if(this.cantPro < x) {
-			System.out.println("\tLa cantidad requerida supera el stock por" + (x - this.cantPro));
-			valor = this.cantPro;
-			this.cantPro = 0;
-			return valor;
-		}else {
-			this.cantPro -= x;
-			return x;
-		}*/
 		this.cantPro -= x;
 	}
 	
 	@Override
 	public String toString() {
-		return 	  "\n"
-				+ "\tProducto: "+this.getNomPro()+"\n"
-				+ "\tCantidad: "+this.getCantPro()+"\n"
-				+ "\tPrecio Unitario: "+this.getPrecio()+"\n";
+		return 	"\t=========================================="+
+				"\n\t                 PRODUCTO                 "+
+				"\n\t=========================================="+
+				"\n"+
+				"\t- Nombre del Producto: \t"+this.getNomPro()+"\n"
+				+ "\t- Cantidad: \t"+this.getCantPro()+"\n"
+				+ "\t- Precio Unitario: \t"+this.getPrecio()+"\n";
 	}
 	public int compareTo(Producto o) {
 		if (this.codPro>o.codPro) return 1;
@@ -155,5 +158,4 @@ public class Producto implements Comparable<Producto>{
 		}
 		return false;
 	}
-	
 }

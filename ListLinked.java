@@ -54,7 +54,6 @@ public class ListLinked <T> implements TDAList<T>{
 			this.count++;
 		}
 	}
-	//PreCondition: List is not empty
 	private Node<T> getLastNode(){
 		Node<T> auxNode=this.first;
 		while(auxNode.getNext()!=null)
@@ -64,9 +63,6 @@ public class ListLinked <T> implements TDAList<T>{
 
 
 	public void insertFirst(T x) {
-		/*Node<T> nuevoNode= new Node<T>(x);
-		nuevoNode.setNext(this.first);
-		this.first=nuevoNode;*/
 		this.first= new Node<T>(x,this.first);
 		this.count++;
 		

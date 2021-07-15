@@ -6,7 +6,8 @@ import java.nio.file.Paths;
 import java.text.ParseException;
 
 public class Web {
-	private ListLinked<Usuario> Usuarios;
+	/* Atributos */
+	private HashC <Usuario> Usuarios ;
 	private BSTree<CategoriaProducto> CategoriaProductos;
 	File archivo = null;
     FileReader fr = null;
@@ -15,11 +16,11 @@ public class Web {
     private CategoriaProducto CatTallo= new CategoriaProducto(2, "Tallo");
     private CategoriaProducto CatHortalizas= new CategoriaProducto(3, "Hortalizas");
     private CategoriaProducto CatTuberculo= new CategoriaProducto(4, "Tuberculo");
-	
-	public ListLinked<Usuario> getUsuarios() {
+    /* ------ */
+	public HashC<Usuario> getUsuarios() {
 		return Usuarios;
 	}
-	public void setUsuarios(ListLinked<Usuario> usuarios) {
+	public void setUsuarios(HashC<Usuario> usuarios) {
 		Usuarios = usuarios;
 	}
 	
@@ -32,7 +33,7 @@ public class Web {
 	public Web() throws ItemDuplicated {
 		super();
 		boolean x=true;
-		this.Usuarios=new ListLinked();
+		this.Usuarios=new HashC<Usuario>(40);
 		this.CategoriaProductos= new BSTree();
 		LinkedList productos = new LinkedList<Producto>();
 		CategoriaProductos.insert(this.CatCereales);
@@ -45,7 +46,7 @@ public class Web {
 	public Usuario validarUsuario() throws NumberFormatException, IOException, ItemDuplicated  {
 		boolean state=false;
 
-		if(this.Usuarios.isEmptyList()) {
+		if(this.Usuarios.getTable().isEmpty()) {
 			System.out.println();
 			System.out.println("\t================== ERROR ==================");
 			System.out.println("\t\t¡No hay usuarios registrados!");
@@ -55,107 +56,55 @@ public class Web {
 		}
 			if(state==false) {
 				java.util.Scanner input = new java.util.Scanner(System.in);
-				System.out.println("¡Que gusto volvernos a ver!");
-				System.out.println("Ingrese su id");
+				System.out.println("\t\t *** ¡Que gusto volvernos a ver! ***");
+				System.out.print("\t* Ingrese su DNI: ");
 				String id = input.next();
-				System.out.println("Ingrese su contraseña");
+				System.out.print("\t* Ingrese su contraseña: ");
 				String contraseña = input.next();
-		         String posicion = Files.readAllLines(Paths.get("C:\\Users\\HP\\Desktop\\archivo.txt")).get(Integer.valueOf(id));
-	     
-		         
-		         if(posicion.equals(contraseña)) {  
+		        
+		         if(this.Usuarios.search(Integer.parseInt(id))!=null) {  
 		        	 Usuario auxNode= new Usuario(id);
-		        	 int posi=this.Usuarios.search(auxNode);
-		        	 auxNode = this.Usuarios.search(posi);
-		        	 System.out.println("entra ctv"+auxNode);
-	        		 System.out.println(" USUARIO VALIDO, BIENVENIDO");
+		        	 auxNode = this.Usuarios.search(Integer.parseInt(id));
+		        	 System.out.println("\tEntrando "+auxNode);
+		        	 System.out.println("\t********USUARIO VALIDO, BIENVENIDO********");
 	        		 state=true;
 	        		 return auxNode;
 	        	 }
 			}
-			 System.out.println("USUARIO INVÁLIDO");
-		        return null;
-			
+			System.out.println(" ------ USUARIO INVÁLIDO ------");
+			return null;
 	}
-	public int añadirUsuario(Usuario User) throws FileNotFoundException  {
-		int cont=0;
-		archivo = new File ("C:\\Users\\HP\\Desktop\\archivo.txt");
-		fr = new FileReader (archivo);
-        br = new BufferedReader(fr);
-	    FileWriter fichero = null;
-        PrintWriter pw = null;
-        try
-        {	
-            fichero = new FileWriter("C:\\Users\\HP\\Desktop\\archivo.txt",true);
-            pw = new PrintWriter(fichero);
-            String linea;
-            while((linea=br.readLine())!=null) {
-            	cont++;
-            }
-            pw.println(User.getContraseña());
-            User.setId(String.valueOf(cont)); 
-            return cont;
+	
+	
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-           try {
-           
-           if (null != fichero)
-              fichero.close();
-           } catch (Exception e2) {
-              e2.printStackTrace();
-           }
-        }
-		return 0;
-	}
-	/*public void getProductosId(int i) throws ItemNoFound{
-			switch(i) {
-			case 1:
-				this.CategoriaProductos.search(this.CatCereales);
-				break;
-			case 2:
-				this.CategoriaProductos.search(this.CatTallo);
-				break;
-			case 3:
-				this.CategoriaProductos.search(this.CatHortalizas);
-				break;
-			case 4:
-				this.CategoriaProductos.search(this.CatTuberculo);
-				break;
-			default:
-				System.out.println("\tOpción inválida...");
-				break;
-			}
-		
-	}*/
 	@SuppressWarnings("unchecked")
-	public void modiProducto() throws ItemNoFound, ParseException{
+	public void modiProducto(Agricultor vendedor) throws ItemNoFound, ParseException{
 		int opc=0;
+		int cont=0;
 		boolean seguir=true;
 		while (seguir) {
 			Scanner sc=new Scanner(System.in);
-			System.out.println("\n\t1.Cereales\n\t2.Tallos\n\t3.Hortalizas\n\t4.Tubérculos\n\t5.Salir\n");
-			System.out.print("\tSeleccione la categoría: ");
+			System.out.println("\n\t  1.Cereales\n\t  2.Tallos\n\t  3.Hortalizas\n\t  4.Tubérculos\n\t  5.Dejar de añadir\n");
+			System.out.print("\t* Seleccione la categoria o respuesta: ");
 			opc=sc.nextInt();
 			switch(opc) {
 			case 1:
-				this.CategoriaProductos.search(this.CatCereales).agregarProducto();
+				this.CategoriaProductos.search(this.CatCereales).agregarProducto(vendedor);
 				break;
 			case 2:
-				this.CategoriaProductos.search(this.CatTallo).agregarProducto();
+				this.CategoriaProductos.search(this.CatTallo).agregarProducto(vendedor);
 				break;
 			case 3:
-				this.CategoriaProductos.search(this.CatHortalizas).agregarProducto();
+				this.CategoriaProductos.search(this.CatHortalizas).agregarProducto(vendedor);
 				break;
 			case 4:
-				this.CategoriaProductos.search(this.CatTuberculo).agregarProducto();
+				this.CategoriaProductos.search(this.CatTuberculo).agregarProducto(vendedor);
 				break;
 			case 5:
 				seguir=false;
 				break;
 			default:
-				System.out.println("\tOpción inválida...");
+				System.out.println("\t--------Opcion invalida--------"); 
 			}
 		}
 	}
@@ -164,7 +113,8 @@ public class Web {
 		boolean seguir=true;
 		while (seguir) {
 			Scanner sc=new Scanner(System.in);
-			System.out.println("\n\t1.Cereales\n\t2.Tallos\n\t3.Hortalizas\n\t4.Tubérculos\n\t5.Salir\n\tSeleccione la categoría: ");
+			System.out.println("\n\t  1.Cereales\n\t  2.Tallos\n\t  3.Hortalizas\n\t  4.Tubérculos\n\t  5.Salir\n");
+			System.out.print("\t* Seleccione la categoría: ");
 			opc=sc.nextInt();
 			switch(opc) {
 			case 1:
@@ -179,7 +129,7 @@ public class Web {
 				seguir=false;
 				break;
 			default:
-				System.out.println("\tOpción inválida...");
+				System.out.println("\t--------Opcion invalida--------"); 
 			}
 		}
 		return null;

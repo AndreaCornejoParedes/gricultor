@@ -1,4 +1,5 @@
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -6,15 +7,14 @@ public class Agricultor extends Usuario{
 	LinkedList Productos;
 	public Agricultor(String nombre, String apellidos) {
 		super(nombre, apellidos);
-		// TODO Auto-generated constructor stub
+		
 	}
 	public Agricultor() {
 		super();
 	}
-	public Agricultor(int x) {
-		super(x);
-	}
-public void menuopciones(Usuario Agricultor, Web Gricultor) throws ItemNoFound, ParseException {
+	
+	public void menuopciones(Usuario Agricultor, Web Gricultor) throws ItemNoFound, ParseException 
+{
 		
 		Scanner entrada = new Scanner(System.in);
 		boolean salir = false;
@@ -27,36 +27,37 @@ public void menuopciones(Usuario Agricultor, Web Gricultor) throws ItemNoFound, 
 					System.out.println("\t                   MENU                   ");
 					System.out.println("\t==========================================");
 					System.out.println("\tElija una opcion");
-					System.out.println("\t1 : Añadir producto a la venta");
-					System.out.println("\t2 : Ver productos");
-					System.out.println("\t3 : Borrar productos");
-					System.out.println("\t4 : Aumentar Stock de productos");
-					System.out.println("\t5 : Cerrar sesion");
+					System.out.println("\t 1 : Añadir producto a la venta");
+					System.out.println("\t 2 : Ver productos");
+					System.out.println("\t 3 : Borrar productos");
+					System.out.println("\t 4 : Aumentar Sto"
+							+ "ck de productos");
+					System.out.println("\t 5 : Cerrar sesion");
 					System.out.print("\tOpc: ");
 					aux = entrada.nextInt();
 					switch(aux) {
 					case 1:
-						System.out.println("\tSeleccione categoria que desea agregar un nuevo producto: ");
-						Gricultor.modiProducto();
+						System.out.println("\t* Seleccione categoria donde desea agregar un nuevo producto: ");
+						Gricultor.modiProducto(this);
 						break;
 					case 2:
-						System.out.println("\tSeleccione categoria que desea listar:  ");
+						System.out.println("\t* Seleccione categoria que desea listar:  ");
 						x = Gricultor.getProductos();
 						x.listarProductos();
 						break;
 					case 3:
-						System.out.println("\tSeleccione categoria donde desea eliminar algun producto: ");
+						System.out.println("\t* Seleccione categoria donde desea eliminar algun producto: ");
 						x = Gricultor.getProductos();
-						System.out.println("\tIndique cual es el producto al que desea eliminar: ");
+						System.out.println("\t* Indique cual es el producto al que desea eliminar: ");
 						x.listarProductos();
 						System.out.print("\tIndice: ");
 						indice = entrada.nextInt();
 						x.eliminarProducto(indice);
 						break;
 					case 4:
-						System.out.println("\tEn que categoria desea aumentar stock: ");
+						System.out.println("\t* ¿En que categoria desea aumentar stock?: ");
 						x = Gricultor.getProductos();
-						System.out.println("\tIndique cual es el producto al que desea aumentar stock: ");
+						System.out.println("\t* Indique cual es el producto al que desea aumentar stock: ");
 						x.listarProductos();
 						
 						System.out.print("\tIndice: ");
@@ -73,7 +74,6 @@ public void menuopciones(Usuario Agricultor, Web Gricultor) throws ItemNoFound, 
 					}
 				}
 				break;
-	
 			}
 		}
 
