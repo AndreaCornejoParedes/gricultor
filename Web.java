@@ -7,7 +7,7 @@ import java.text.ParseException;
 
 public class Web {
 	/* Atributos */
-	private ListLinked<Usuario> Usuarios;
+	private HashC <Usuario> Usuarios ;
 	private BSTree<CategoriaProducto> CategoriaProductos;
 	File archivo = null;
     FileReader fr = null;
@@ -17,10 +17,10 @@ public class Web {
     private CategoriaProducto CatHortalizas= new CategoriaProducto(3, "Hortalizas");
     private CategoriaProducto CatTuberculo= new CategoriaProducto(4, "Tuberculo");
     /* ------ */
-	public ListLinked<Usuario> getUsuarios() {
+	public HashC<Usuario> getUsuarios() {
 		return Usuarios;
 	}
-	public void setUsuarios(ListLinked<Usuario> usuarios) {
+	public void setUsuarios(HashC<Usuario> usuarios) {
 		Usuarios = usuarios;
 	}
 	
@@ -33,7 +33,7 @@ public class Web {
 	public Web() throws ItemDuplicated {
 		super();
 		boolean x=true;
-		this.Usuarios=new ListLinked();
+		this.Usuarios=new HashC<Usuario>(40);
 		this.CategoriaProductos= new BSTree();
 		LinkedList productos = new LinkedList<Producto>();
 		CategoriaProductos.insert(this.CatCereales);
@@ -46,12 +46,12 @@ public class Web {
 	public Usuario validarUsuario() throws NumberFormatException, IOException, ItemDuplicated  {
 		boolean state=false;
 
-		if(this.Usuarios.isEmptyList()) {
+		if(this.Usuarios.getTable().isEmpty()) {
 			System.out.println();
 			System.out.println("\t================== ERROR ==================");
 			System.out.println("\t\t¡No hay usuarios registrados!");
 			System.out.println();
-			//SourceGricultor.inicio(this);
+			
 			return null;
 		}
 			if(state==false) {
@@ -77,39 +77,8 @@ public class Web {
 			return null;
 	}
 	
-	public int agregarUsuario(Usuario User) throws FileNotFoundException  {
-		int cont=0;
-		archivo = new File ("E:\\LABORATORIOAED\\archivo.txt");
-		fr = new FileReader (archivo);
-        br = new BufferedReader(fr);
-	    FileWriter fichero = null;
-        PrintWriter pw = null;
-        try
-        {	
-            fichero = new FileWriter("E:\\LABORATORIOAED\\archivo.txt",true);
-            pw = new PrintWriter(fichero);
-            String linea;
-            while((linea=br.readLine())!=null) {
-            	cont++;
-            }
-            pw.println(User.getpassword());
-            User.setId(String.valueOf(cont)); 
-            return cont;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-           try {
-           
-           if (null != fichero)
-              fichero.close();
-           } catch (Exception e2) {
-              e2.printStackTrace();
-           }
-        }
-		return 0;
-	}
 	
+
 	@SuppressWarnings("unchecked")
 	public void modiProducto(Agricultor vendedor) throws ItemNoFound, ParseException{
 		int opc=0;

@@ -1,6 +1,9 @@
 import java.io.IOException;
+
 import java.text.ParseException;
 import java.util.*;
+
+
 
 public class SourceGricultor {
 	public static void main(String[] args) throws NumberFormatException, IOException, ItemDuplicated, ItemNoFound, ParseException {
@@ -15,7 +18,7 @@ public class SourceGricultor {
 	public static Usuario inicio(Web Gricultor) throws ItemDuplicated, NumberFormatException, IOException {
 		int opc;
 		Scanner input = new Scanner(System.in);
-		System.out.println("\n\t<<<<<<<<< BIENVENIDO A GRICULTOR >>>>>>>>>\n Por favor asegurese de que la direccion de archivo sea correcta");
+		System.out.println("\n\t<<<<<<<<< BIENVENIDO A GRICULTOR >>>>>>>>>");
 		System.out.println("\t==========================================");
 		System.out.println("\t                   LOGIN                  ");
 		System.out.println("\t==========================================");
@@ -65,9 +68,9 @@ public class SourceGricultor {
 			System.out.print("\tIngrese Aceptar para confirmar: ");
 			aux1=entrada.next();
 		}
-		aux = Gricultor.agregarUsuario(NewUser);
-		System.out.println("\tSu ID generado es..."+aux);
-		Gricultor.getUsuarios().insertLast(NewUser);
+		
+		Gricultor.getUsuarios().insert(Integer.parseInt(NewUser.getId()), NewUser);
+		
 		return NewUser;
 	}
 	
