@@ -58,3 +58,33 @@ local.properties
 # Uncomment this line if you wish to ignore the project description file.
 # Typically, this file would be tracked if it contains build/dependency configurations:
 #.project
+/Agricultor.class
+/BSTree$Node.class
+/BSTree.class
+/Boleta.class
+/Carro.class
+/CategoriaProducto.class
+/Comprador.class
+/Comprobante.class
+/ExceptionIsEmpty.class
+/Factura.class
+/ItemDuplicated.class
+/ItemNoFound.class
+/LinkedStack.class
+/ListArray.class
+/ListLinked.class
+/Node.class
+/OrderListLinked.class
+/Producto.class
+/SourceGricultor.class
+/Stack.class
+/TDAList.class
+/Usuario.class
+/Web.class
+/Edge.class
+/GraphLink.class
+/IsNotFound.class
+/LinkedQueue.class
+/PriorityQueue.class
+/Queue.class
+/Vertex.class

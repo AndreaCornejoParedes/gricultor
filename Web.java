@@ -167,4 +167,50 @@ public class Web {
 		}
 		return null;
 	}
+	/*
+	 * IngresarCiudades
+	 */
+	public int ingresarRuta(GraphLink graph ) throws FileNotFoundException{
+		Scanner cs = new Scanner(System.in);
+		int opc=0 ;
+		archivo = new File ("rutas.txt");
+		GraphLink <String> grafo = new GraphLink<String>();
+		//fr = new FileReader (archivo);
+        //br = new BufferedReader(fr);
+	    //FileWriter fichero = null;
+        //PrintWriter pw = null;
+		try {
+			BufferedReader bf =new  BufferedReader(new FileReader ("C:\\Users\\user\\Downloads\\LabAED Practicas\\Rutas.txt"));
+	    	String line ;
+	    	while (( line = bf.readLine()) != null) {
+	    		grafo.insertEdge(line, line);
+	    		
+	    	}
+		} catch (Exception e){
+			System.err.println("¡¡ERROR!! - El archivo que se busca no se puede encontrar ");
+		}
+		opc = cs.nextInt();
+		System.out.println("1. Ingresar una nueva ruta \n" +
+                "2. Calcular la mejor ruta\n" +
+                "3. Salir \n");
+		switch (opc) {
+			case 1:
+				System.out.println ("Escriba el nombre de la ciudad origen:");
+	            String city1 = cs.next();
+	            System.out.println ("Escriba el nombre de la ciudad destino:");
+	            String city2 = cs.next();
+	            System.out.println ("Ingrese la distancia ");
+	            Integer peso = cs.nextInt();
+				grafo.insertEdge(city1, city2, peso);
+				
+			case 2:
+			case 3:
+				break;
+			default:
+				System.out.println("\t--------Opcion invalida--------");
+		}
+		return 0;
+		
+	}
+	
 }
