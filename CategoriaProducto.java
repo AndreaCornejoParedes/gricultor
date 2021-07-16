@@ -1,9 +1,11 @@
+import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.util.Scanner;
 public class CategoriaProducto implements Comparable<CategoriaProducto>{
 	private int codCat;
 	private String nomCat;
 	private ListLinked<Producto> Productos;
+	//private Web rutas= new Web();
 	
 	public CategoriaProducto(int codCat, String nomCat) {
 		super();
@@ -52,9 +54,10 @@ public class CategoriaProducto implements Comparable<CategoriaProducto>{
 		}
 	}
 	
-	public void agregarProducto(Agricultor vendedor) throws ParseException {
+	public void agregarProducto(Agricultor vendedor) throws ParseException, FileNotFoundException, ItemDuplicated {
 		Producto auxProducto = new Producto(vendedor);
 		this.Productos.insertLast(auxProducto);
+		
 	}	
 	public int getCodCat() {
 		return codCat;

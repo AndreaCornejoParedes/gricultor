@@ -59,6 +59,9 @@ public class GraphLink<E> {
 		}
 	}
 	
+	
+	
+	
 	public boolean removeEdge(E v,E w) {
 		Vertex<E> aux = this.searchVertex(v);
 		Vertex<E> aux2 = this.searchVertex(w);
@@ -274,7 +277,7 @@ public class GraphLink<E> {
 		
 		//return this.getPath(this.searchVertex(a),this.searchVertex(b));
 	}
-	private void getPath(Vertex<E> inicio,Vertex<E> fin) {
+	public void getPath(Vertex<E> inicio,Vertex<E> fin) {
 		ArrayList<E> path = new ArrayList<E>();
 		path.add(fin.getData());
 		Vertex<E> aux = fin.path;
@@ -287,16 +290,14 @@ public class GraphLink<E> {
 		for(int i=path.size()-1;i>=0;i--) {
 			p += path.get(i)+" -> ";
 		}
-		
-		System.out.println("La ruta recomendada es " + p);
-		System.out.print("La distancia es: "+fin.dist);
+		int preciokm=5 ;
+		System.out.println("\t La ruta recomendada es " + p);
+		System.out.println("\t La distancia es: "+fin.dist);
+		System.out.print("\t El precio a pagar por el recorrido es: "+fin.dist*preciokm+" soles");
 		//return path;
 	}
 	
-	
-	/**
-	 * 
-	 */
+	/**/
 	
 	public Vertex<E> searchVertex(E vertex){
 		Node<Vertex<E>> aux = this.listVertex.getFirst();
@@ -335,6 +336,4 @@ public class GraphLink<E> {
 	public String toString() {
 		return this.listVertex.toString();
 	}
-	
-	
 }

@@ -4,65 +4,19 @@ import java.util.*;
 
 public class SourceGricultor {
 	public static void main(String[] args) throws NumberFormatException, IOException, ItemDuplicated, ItemNoFound, ParseException {
-		GraphLink<String> ciudades = new GraphLink<String>();
-		
-		/*
-		ciudades.insertVertex("Apurimac");
-		ciudades.insertVertex("Ayacucho");
-		ciudades.insertVertex("Cusco");
-		ciudades.insertVertex("Arequipa");
-		ciudades.insertVertex("Ica");
-		ciudades.insertVertex("Huancavelica");
-		ciudades.insertVertex("Lima");
-		ciudades.insertVertex("Junin");
-		
-		ciudades.insertEdge("Apurimac", "Ayacucho",157);
-		ciudades.insertEdge("Apurimac", "Cusco",134);
-		ciudades.insertEdge("Apurimac", "Arequipa",581);
-		ciudades.insertEdge("Ayacucho", "Ica",410);
-		ciudades.insertEdge("Ayacucho", "Arequipa",948);
-		ciudades.insertEdge("Ayacucho", "Cusco",571);
-		ciudades.insertEdge("Ayacucho", "Huancavelica",203);
-		ciudades.insertEdge("Arequipa", "Ica",711);
-		ciudades.insertEdge("Arequipa", "Cusco",323);
-		ciudades.insertEdge("Huancavelica", "Lima",387);
-		ciudades.insertEdge("Lima", "Junin",236);
-		ciudades.insertEdge("Huancavelica", "Junin",319);
-		ciudades.insertEdge("Huancavelica", "Ica",337);
-		ciudades.insertEdge("Junin", "Cusco",1009);
-		
-		
-		
-		System.out.println(ciudades);
-		
-		ciudades.Dijkstra("Arequipa");*/
-		ciudades.insertVertex("a");
-		ciudades.insertVertex("b");
-		ciudades.insertVertex("c");
-		ciudades.insertVertex("d");
-		ciudades.insertVertex("e");
-		ciudades.insertEdge("a", "b",2);
-		ciudades.insertEdge("a", "c",4);
-		ciudades.insertEdge("c", "d",1);
-		ciudades.insertEdge("b", "d",5);
-		ciudades.insertEdge("a", "e",10);
-		//ciudades.Dijkstra("d","a");
-		ciudades.Dijkstra("d","e");
-		//System.out.println(ciudades.Dijkstra("d","e"));
-		
-		/*
 		Usuario NewUser;
 		Web Gricultor = new Web();
 		while(true) {
 		NewUser = SourceGricultor.inicio(Gricultor);
 		NewUser.menuopciones(NewUser,Gricultor);
-		}*/
+		}
 	}
 	 
 	public static Usuario inicio(Web Gricultor) throws ItemDuplicated, NumberFormatException, IOException {
 		int opc;
 		Scanner input = new Scanner(System.in);
-		System.out.println("\n\t<<<<<<<<< BIENVENIDO A GRICULTOR >>>>>>>>>\n Por favor asegurese de que la direccion de archivo sea correcta");
+		System.out.println("\n\t<<<<<<<<< BIENVENIDO A GRICULTOR >>>>>>>>>\n\n "
+				+ "*Por favor asegurese de que la direccion de archivo sea correcta*\n");
 		System.out.println("\t==========================================");
 		System.out.println("\t                   LOGIN                  ");
 		System.out.println("\t==========================================");
