@@ -262,7 +262,6 @@ public class GraphLink<E> {
 				}
 			}
 		}
-		//return this.printDijkstra(info,destino);
 		this.getPath(this.searchVertex(info),this.searchVertex(destino));
 	}
 	
@@ -274,10 +273,8 @@ public class GraphLink<E> {
 			if(ver.path!=null) System.out.println(ver.getData()+"\t"+ver.dist+"\t"+ver.path.getData());
 			else System.out.println(ver.getData()+"\t"+ver.dist+"\t--");
 		}
-		
-		//return this.getPath(this.searchVertex(a),this.searchVertex(b));
 	}
-	private void getPath(Vertex<E> inicio,Vertex<E> fin) {
+	public void getPath(Vertex<E> inicio,Vertex<E> fin) {
 		ArrayList<E> path = new ArrayList<E>();
 		path.add(fin.getData());
 		Vertex<E> aux = fin.path;
@@ -290,54 +287,25 @@ public class GraphLink<E> {
 		for(int i=path.size()-1;i>=0;i--) {
 			p += path.get(i)+" -> ";
 		}
-		
-		System.out.println("La ruta recomendada es " + p);
-		System.out.print("La distancia es: "+fin.dist);
+		int preciokm=5 ;
+		System.out.println("\t La ruta recomendada es " + p);
+		System.out.println("\t La distancia es: "+fin.dist);
+		System.out.print("\t El precio a pagar por el recorrido es: "+fin.dist*preciokm+" soles");
 		//return path;
 	}
 	
 	/**/
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public Vertex<E> searchVertex(E vertex){
-		Node<Vertex<E>> aux = this.listVertex.getFirst();
-		while(true) {
-			if(aux.getData().getData() == vertex) {
-				return aux.getData();
-			}
-			else if(aux.getNext() != null) {
-				aux = aux.getNext();
-			}
-			else {
-				break;
-			}
+	public Vertex<E> searchVertex(E v){
+		Vertex<E> e=listVertex.searchData(new Vertex<E>(v));
+		if(e==null) {
+			return null;
 		}
-		return null;
+		else { 
+			return e;
+		}
 	}
+	
 	public Edge<E> searchEdge(Vertex<E> x,Vertex<E> z){
 		ListLinked<Edge<E>> edges = x.listAdj;
 		Node<Edge<E>> aux = edges.getFirst();
