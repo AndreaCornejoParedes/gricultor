@@ -294,32 +294,9 @@ public class GraphLink<E> {
 	}
 	
 	
-	/**/
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * 
+	 */
 	
 	public Vertex<E> searchVertex(E vertex){
 		Node<Vertex<E>> aux = this.listVertex.getFirst();
@@ -358,4 +335,6 @@ public class GraphLink<E> {
 	public String toString() {
 		return this.listVertex.toString();
 	}
+	
+	
 }

@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.ParseException;
 
+
 public class Web {
 	/* Atributos */
 	private ListLinked<Usuario> Usuarios;
@@ -175,6 +176,7 @@ public class Web {
 		int opc=0 ;
 		archivo = new File ("rutas.txt");
 		GraphLink <String> grafo = new GraphLink<String>();
+		Grafo ciudades = new Grafo();
 		//fr = new FileReader (archivo);
         //br = new BufferedReader(fr);
 	    //FileWriter fichero = null;
@@ -191,8 +193,9 @@ public class Web {
 		}
 		opc = cs.nextInt();
 		System.out.println("1. Visualizar las rutas almacenadas  \n" +
-                "2. Calcular la mejor ruta\n" +
-                "3. Salir \n");
+				"2. Visualizar las distancias entre ciudades \n" +
+                "3. Calcular la mejor ruta\n" +
+                "4. Salir \n");
 		switch (opc) {
 			case 1:
 				System.out.println("\t  ----- ESTAS SON LAS CIUDADES ALMACENADAS  -----  \n");
@@ -213,16 +216,45 @@ public class Web {
 				grafo.insertVertex("Junin");
 				System.out.println("\t 8.  "+grafo);
 				break;
-				
-			case 2:
-				System.out.println ("Escriba el nombre de la ciudad origen:");
+			case 2: 
+				System.out.println("\t  ----- ESTAS SON LAS DISTANCIAS ALMACENADAS  -----  \n");
+			case 3:
+				System.out.println (" Calcular la distancia entre dos ciudades: ");
+				System.out.println("Lista entre ciudades:  \n" +
+		                " - Apurimac \n" +
+		                " - Ayacucho \n" +
+		                " - Cusco \n" +
+		                " - Arequipa \n" +
+		                " - Ica \n" +
+		                " - Huancavelica \n" +
+		                " - Lima \n" +
+		                " - Junin \n" );
+				System.out.println ("Escriba el nombre de la ciudad de origen: ");
 	            String city1 = cs.next();
-	            System.out.println ("Escriba el nombre de la ciudad destino:");
+	            //String city2 = cs.next();
+	            while (!ciudades.contains(city1)) {
+	            	 System.out.println ("Lo sentimos... La ciudad que busca no se encuentra registrada. ");
+	            	 city1 = cs.next();
+	            	 break;
+	            	
+	            }
+	            System.out.println ("Escriba el nombre de la ciudad de destino: ");
 	            String city2 = cs.next();
+	            //String city2 = cs.next();
+	            while (!ciudades.contains(city1)) {
+	            	 System.out.println ("Lo sentimos... La ciudad que busca no se encuentra registrada. ");
+	            	 city2 = cs.next();
+	            	 break;
+	            }
+	            city1 = city1.toLowerCase();
+	            city2 = city2.toLowerCase();
+	            grafo.Dijkstra(city1, city2);
+	            System.out.println("La distancia mas corta es de " + city1 +  " "+ city2  + "   KM");
+	            /*
 	            System.out.println ("Ingrese la distancia ");
 	            Integer peso = cs.nextInt();
-				grafo.insertEdge(city1, city2, peso);
-			case 3:
+				grafo.insertEdge(city1, city2, peso);*/
+			case 4:
 				break;
 			default:
 				System.out.println("\t--------Opcion invalida--------");
