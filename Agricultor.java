@@ -1,4 +1,6 @@
+import java.io.FileNotFoundException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -6,16 +8,14 @@ public class Agricultor extends Usuario{
 	LinkedList Productos;
 	public Agricultor(String nombre, String apellidos) {
 		super(nombre, apellidos);
-		// TODO Auto-generated constructor stub
+		
 	}
 	public Agricultor() {
 		super();
 	}
-	public Agricultor(int x) {
-		super(x);
-	}
 	
-	public void menuopciones(Usuario Agricultor, Web Gricultor) throws ItemNoFound, ParseException {
+	public void menuopciones(Usuario Agricultor, Web Gricultor) throws ItemNoFound,ParseException
+{
 		
 		Scanner entrada = new Scanner(System.in);
 		boolean salir = false;
@@ -38,7 +38,12 @@ public class Agricultor extends Usuario{
 					switch(aux) {
 					case 1:
 						System.out.println("\t* Seleccione categoria donde desea agregar un nuevo producto: ");
-						Gricultor.modiProducto();
+						try {
+							Gricultor.modiProducto(this);
+						} catch (FileNotFoundException | ItemNoFound | ParseException | ItemDuplicated e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						break;
 					case 2:
 						System.out.println("\t* Seleccione categoria que desea listar:  ");
@@ -76,6 +81,7 @@ public class Agricultor extends Usuario{
 				break;
 			}
 		}
+
 }
 	
 

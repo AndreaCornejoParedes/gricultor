@@ -1,3 +1,4 @@
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,9 +9,7 @@ public class Comprador extends Usuario {
 		super();
 		this.carrito = new Carro();
 	}
-	public Comprador(int i) {
-		super(i);
-	}
+	
 	public Carro getCarrito() {
 		return this.carrito;
 	}
@@ -43,10 +42,13 @@ public class Comprador extends Usuario {
 				case 1:
 					c1 = new Boleta(this.carrito.getProductosCarrito());
 					c1.agregarComprobante();
+					System.out.println(c1);
 					break;
 				case 2:
 					c1 = new Factura(this.carrito.getProductosCarrito());
 					c1.agregarComprobante();
+					System.out.println(c1);
+
 					break;
 				default:
 					System.out.println("\tOpcion no valida...");
@@ -80,7 +82,7 @@ public class Comprador extends Usuario {
 			System.out.println("\tSu pedido no se cancelara");
 		}
 	}
-	public void menuopciones(Usuario Comprador, Web Gricultor) throws ItemNoFound {
+	public void menuopciones(Usuario Comprador, Web Gricultor) throws ItemNoFound, ParseException  {
 		Scanner m = new Scanner(System.in);
 		CategoriaProducto x;
 		int indice,cantidad,aux;
@@ -103,8 +105,6 @@ public class Comprador extends Usuario {
 			switch(aux) {
 			case 1:
 				((Comprador) Comprador).RealizarPedido(Gricultor);
-				//System.out.println(gricultor.getCategoriaProductos().toString());
-				//gricultor.modiProducto();
 				break;
 			case 2:
 				if(((Comprador) Comprador).getCarrito().isEmpty()) {
@@ -116,6 +116,7 @@ public class Comprador extends Usuario {
 				break;
 			case 3:
 				((Comprador) Comprador).ConfirmarPedido();
+				
 				break;
 			case 4:
 				System.out.println(((Comprador) Comprador).getCarrito());
