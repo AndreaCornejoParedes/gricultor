@@ -13,7 +13,7 @@ public class Agricultor extends Usuario{
 		super();
 	}
 	
-	public void menuopciones(Usuario Agricultor, Web Gricultor) 
+	public void menuopciones(Usuario Agricultor, Web Gricultor) throws ItemNoFound,ParseException
 {
 		
 		Scanner entrada = new Scanner(System.in);
