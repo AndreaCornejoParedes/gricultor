@@ -190,11 +190,31 @@ public class Web {
 			System.err.println("¡¡ERROR!! - El archivo que se busca no se puede encontrar ");
 		}
 		opc = cs.nextInt();
-		System.out.println("1. Ingresar una nueva ruta \n" +
+		System.out.println("1. Visualizar las rutas almacenadas  \n" +
                 "2. Calcular la mejor ruta\n" +
                 "3. Salir \n");
 		switch (opc) {
 			case 1:
+				System.out.println("\t  ----- ESTAS SON LAS CIUDADES ALMACENADAS  -----  \n");
+				grafo.insertVertex("Apurimac");
+				System.out.println("\t 1.  "+grafo);
+				grafo.insertVertex("Ayacucho");
+				System.out.println("\t 2.  "+grafo);
+				grafo.insertVertex("Cusco");
+				System.out.println("\t 3.  "+grafo);
+				grafo.insertVertex("Arequipa");
+				System.out.println("\t 4.  "+grafo);
+				grafo.insertVertex("Ica");
+				System.out.println("\t 5.  "+grafo);
+				grafo.insertVertex("Huancavelica");
+				System.out.println("\t 6.  "+grafo);
+				grafo.insertVertex("Lima");
+				System.out.println("\t 7.  "+grafo);
+				grafo.insertVertex("Junin");
+				System.out.println("\t 8.  "+grafo);
+				break;
+				
+			case 2:
 				System.out.println ("Escriba el nombre de la ciudad origen:");
 	            String city1 = cs.next();
 	            System.out.println ("Escriba el nombre de la ciudad destino:");
@@ -202,8 +222,6 @@ public class Web {
 	            System.out.println ("Ingrese la distancia ");
 	            Integer peso = cs.nextInt();
 				grafo.insertEdge(city1, city2, peso);
-				
-			case 2:
 			case 3:
 				break;
 			default:

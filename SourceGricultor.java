@@ -5,6 +5,7 @@ import java.util.*;
 public class SourceGricultor {
 	public static void main(String[] args) throws NumberFormatException, IOException, ItemDuplicated, ItemNoFound, ParseException {
 		GraphLink<String> ciudades = new GraphLink<String>();
+		
 		/*
 		ciudades.insertVertex("Apurimac");
 		ciudades.insertVertex("Ayacucho");
