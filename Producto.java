@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.io.FileNotFoundException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,9 +21,9 @@ public class Producto implements Comparable<Producto>{
 	public void setVendedor(Agricultor vendedor) {
 		this.vendedor = vendedor;
 	}
-	public Producto(Agricultor vendedor) throws ParseException {
+	public Producto(Agricultor vendedor) throws ParseException, ItemDuplicated, FileNotFoundException {
 		super();
-	
+		Web rutas= new Web();
 		System.out.println("\t==========================================");
 		System.out.println("\t             MENU DE PRODUCTOS            ");
 		System.out.println("\t==========================================");
@@ -41,11 +42,13 @@ public class Producto implements Comparable<Producto>{
 		System.out.print("\t* Variedad: "); String var=inputstring.nextLine();
 		System.out.println("  "); 
 		this.vendedor=vendedor;
-		System.out.println("\t\t\t PRODUCTO AÑADIDO  "); 
+		System.out.println("\t\t     PRODUCTO AÑADIDO  "); 
 		System.out.println("  "); 
 		System.out.println("\t==========================================");
 		this.nomPro=nom; this.desPro=des; this.cantPro=can;
 		this.precio=prec; this.ubiPro=ubi; this.datePro=dateP; this.variedad=var;
+	
+		rutas.ingresarRuta();
 	}
 	public Producto(int codPro, String nomPro, String desPro, int cantPro, 
 			float precio, String ubiPro, Date datePro, String variedad) {

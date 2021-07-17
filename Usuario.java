@@ -2,8 +2,8 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Usuario {
-	private String id;
+public class Usuario implements Comparable<Usuario> {
+	private String dni;
 	private String nombre;
 	private String apellidos;
 	private String email;
@@ -17,8 +17,11 @@ public class Usuario {
 	public Usuario() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("\t==========================================");
+		System.out.print("\t* Ingrese su DNI: ");
+		this.dni = input.next();
 		System.out.print("\t* Ingrese su nombre: ");
 		this.nombre = input.next();
+		
 		System.out.print("\t* Ingrese su apellido: ");
 		this.apellidos = input.next();
 		System.out.print("\t* Ingrese su e-mail: ");
@@ -30,14 +33,14 @@ public class Usuario {
 	}
 	
 	public Usuario(String id) {
-		this.id = id;
+		this.dni = id;
 	}
  
 	public String getId() {
-		return id;
+		return dni;
 	}
 	public void setId(String id) {
-		this.id = id;
+		this.dni = id;
 	}
 	public String getNombre() {
 		return nombre;
@@ -90,6 +93,12 @@ public class Usuario {
 	public void menuopciones(Usuario newUser, Web gricultor)throws ItemNoFound, ParseException  {
 		// TODO Auto-generated method stub
 		
+	}
+	public int compareTo(Usuario o) {
+		
+		if (this.dni.compareTo(o.dni)==1) return 1;		
+		if (this.dni.compareTo(o.dni)==-1) return -1;	
+		return 0;
 	}
 	
 }
